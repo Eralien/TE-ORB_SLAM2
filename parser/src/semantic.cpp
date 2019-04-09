@@ -57,8 +57,14 @@ int main(int argc, char *argv[])
         cv::Mat semantics = cv::Mat::zeros(keypoints.size(), NUM_CLASSTYPES, CV_32FC1);
         get_semantic_info(keypoints, detections, semantics, validKPs);
 
+        // Draw keypoints on original image
+        cv::Mat allKPImage;
+        cv::Scalar green = {0, 255, 0};
+        drawKeypoints(image, keypoints, allKPImage, green);
+        
+        // Display images side by side
         cv::Mat combinedImg = cv::Mat();
-        combine_images(imGray, imGray, combinedImg);
+        combine_images(allKPImage, image, combinedImg);
 
         cv::imshow(windowName, combinedImg); // Show our image inside the created window.
         cv::waitKey(0);                // Wait for any keystroke in the window
