@@ -1,5 +1,7 @@
 #include <semantic.hpp>
 
+void print_probabilities(cv::Mat &mat);
+
 void combine_images(cv::Mat &img1, cv::Mat &img2, cv::Mat &combinedImg);
 
 int main(int argc, char *argv[])
@@ -57,6 +59,8 @@ int main(int argc, char *argv[])
         cv::Mat semantics = cv::Mat::zeros(keypoints.size(), NUM_CLASSTYPES, CV_32FC1);
         get_semantic_info(keypoints, detections, semantics, validKPs);
 
+        // print_probabilities(semantics);
+
         // Draw keypoints on original image
         cv::Mat allKPImage, validKPImage;
         cv::Scalar green = {0, 255, 0};
@@ -91,4 +95,17 @@ void combine_images(cv::Mat &img1, cv::Mat &img2, cv::Mat &combinedImg)
     img2.copyTo(totalImg(subImageROI));
 
     combinedImg = totalImg.clone();
+}
+
+void print_probabilities(cv::Mat &mat)
+{
+    for (uint i = 0; i < mat.rows; ++i)
+    {
+        for (uint j = 0; j < mat.cols; ++j)
+        {
+            std::cout << mat.at<float>(i,j) << " ";
+        }
+        std::cout << std::endl;
+    }
+    std::cout << std::endl;
 }
