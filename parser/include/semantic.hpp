@@ -12,7 +12,7 @@
 
 const std::string PREFIX = "../../";
 const std::string IMAGE_LIST = PREFIX + "data/TUM_list.txt";
-const std::string YOLO_TXT = PREFIX + "data/prediction_info_1_room.txt";
+const std::string YOLO_TXT = PREFIX + "data/prediction_info_full.txt";
 
 const uint MAX_FEATURES = 500;
 

@@ -5,7 +5,7 @@
 #include <iostream>
 #include <cstring>
 
-const uint NUM_CLASSTYPES = 6;
+const uint NUM_CLASSTYPES = 10;
 
 enum CLASSTYPE
 {
@@ -14,6 +14,10 @@ enum CLASSTYPE
     REMOTE,
     TVMONITOR,
     MOUSE,
+    BOOK,
+    KEYBOARD,
+    CHAIR,
+    CUP,
     UNKNOWN
 };
 

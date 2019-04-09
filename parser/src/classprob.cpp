@@ -67,8 +67,10 @@ void get_semantic_info(
         // Orb falls in a single bounding box or all bounding boxes share same
         // class and class is not UNKNOWN
         CLASSTYPE classtype = detections[validBBoxes[0]]->classtype;
-        if ((validBBoxes.size() == 1 && classtype != UNKNOWN) || 
-        (bboxes_have_same_valid_class(detections, validBBoxes)))
+        bool cond1 = (validBBoxes.size() == 1 && classtype != UNKNOWN);
+        bool cond2 = (validBBoxes.size() == 2 && 
+            bboxes_have_same_valid_class(detections, validBBoxes));
+        if (cond1 || cond2)
         {
             cv::Mat row = zeroRow.clone();
             row.at<float>(0, classtype) = detections[validBBoxes[0]]->prob;

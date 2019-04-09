@@ -22,5 +22,13 @@ CLASSTYPE Detection::match_classtype(std::string &name)
         return TVMONITOR;
     if (name == "mouse")
         return MOUSE;
+    if (name == "book")
+        return BOOK;
+    if (name == "keyboard")
+        return KEYBOARD;
+    if (name == "chair")
+        return CHAIR;
+    if (name == "cup")
+        return CUP;
     return UNKNOWN;
 }

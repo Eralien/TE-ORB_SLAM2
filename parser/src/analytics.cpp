@@ -41,7 +41,7 @@ void write_report(const std::vector<ClassData> &stats)
 
 int main(int argc, char *argv[])
 {
-    std::ifstream file(PREFIX + "/data/prediction_info_1_room.txt");
+    std::ifstream file(PREFIX + "/data/prediction_info_full.txt");
     if (!file.is_open())
     {
         std::cout << "Error opening file!" << std::endl;
