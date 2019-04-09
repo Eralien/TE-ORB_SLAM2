@@ -1,0 +1,53 @@
+
+2 NEW Mon Apr  8 23:51:53 2019
+cell phone 0.772178
+left: 191; right: 273; top: 84; bottom: 134;
+laptop 0.996984
+left: 207; right: 460; top: 177; bottom: 450;
+2 NEW Mon Apr  8 23:52:24 2019
+cell phone 0.554956
+left: 200; right: 282; top: 88; bottom: 139;
+laptop 0.998344
+left: 224; right: 464; top: 187; bottom: 449;
+2 NEW Mon Apr  8 23:52:56 2019
+cell phone 0.648757
+left: 214; right: 294; top: 91; bottom: 137;
+laptop 0.997970
+left: 230; right: 478; top: 186; bottom: 452;
+3 NEW Mon Apr  8 23:53:27 2019
+remote 0.599145
+left: 223; right: 305; top: 92; bottom: 141;
+laptop 0.994764
+left: 239; right: 490; top: 180; bottom: 461;
+tvmonitor 0.530333
+left: 398; right: 636; top: 9; bottom: 338;
+2 NEW Mon Apr  8 23:53:59 2019
+cell phone 0.527085
+left: 238; right: 320; top: 89; bottom: 142;
+laptop 0.993921
+left: 254; right: 500; top: 184; bottom: 458;
+2 NEW Mon Apr  8 23:54:31 2019
+cell phone 0.797982
+left: 248; right: 328; top: 93; bottom: 141;
+laptop 0.993418
+left: 263; right: 509; top: 195; bottom: 474;
+3 NEW Mon Apr  8 23:55:02 2019
+cell phone 0.630183
+left: 256; right: 337; top: 101; bottom: 152;
+laptop 0.997719
+left: 271; right: 519; top: 212; bottom: 472;
+tvmonitor 0.653281
+left: 426; right: 639; top: 28; bottom: 312;
+1 NEW Mon Apr  8 23:55:34 2019
+laptop 0.997355
+left: 283; right: 537; top: 210; bottom: 473;
+2 NEW Mon Apr  8 23:56:08 2019
+cell phone 0.658858
+left: 286; right: 369; top: 99; bottom: 153;
+laptop 0.995078
+left: 281; right: 569; top: 211; bottom: 469;
+2 NEW Mon Apr  8 23:56:40 2019
+remote 0.550543
+left: 383; right: 470; top: 16; bottom: 51;
+laptop 0.998981
+left: 310; right: 601; top: 214; bottom: 474;

@@ -1,6 +1,8 @@
 #include <parser.h>
 #include <detection.h>
 
+const std::string PREFIX = "../../";
+
 void TEST_print_bbox(detections_t &detections)
 {
     for (size_t i = 0; i < detections.size(); ++i)
@@ -15,7 +17,7 @@ void TEST_print_bbox(detections_t &detections)
 
 int main()
 {
-    std::ifstream predictionFile("prediction_info.txt");
+    std::ifstream predictionFile(PREFIX + "/data/prediction_info.txt");
     if(!predictionFile.is_open())
     {
         std::cout << "Error opening file!" << std::endl;
