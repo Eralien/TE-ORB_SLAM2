@@ -49,7 +49,7 @@ void get_semantic_info(
     const std::vector<cv::KeyPoint> &keypoints,
     const detections_t &detections,
     cv::Mat &semantics,
-    std::vector<int> &validKPs)
+    std::vector<cv::KeyPoint> &validKPs)
 {
     cv::Mat zeroRow = cv::Mat::zeros(1,NUM_CLASSTYPES,CV_32FC1);
 
@@ -73,7 +73,7 @@ void get_semantic_info(
             cv::Mat row = zeroRow.clone();
             row.at<float>(0, classtype) = detections[validBBoxes[0]]->prob;
             row.copyTo(semantics.row(i));
-            validKPs.push_back(i);
+            validKPs.push_back(keypoints[i]);
         }
 
         // Orb does not fall within a single bounding box or it falls in

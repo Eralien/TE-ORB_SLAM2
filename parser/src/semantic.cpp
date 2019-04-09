@@ -52,19 +52,20 @@ int main(int argc, char *argv[])
         orb->detectAndCompute(imGray, cv::Mat(), keypoints, descriptors);
 
         // Read in semantic information from prediction file
-        std::vector<int> validKPs;
+        std::vector<cv::KeyPoint> validKPs;
         detections_t detections = parse::get_detections(yolotxt);
         cv::Mat semantics = cv::Mat::zeros(keypoints.size(), NUM_CLASSTYPES, CV_32FC1);
         get_semantic_info(keypoints, detections, semantics, validKPs);
 
         // Draw keypoints on original image
-        cv::Mat allKPImage;
+        cv::Mat allKPImage, validKPImage;
         cv::Scalar green = {0, 255, 0};
         drawKeypoints(image, keypoints, allKPImage, green);
-        
+        drawKeypoints(image, validKPs, validKPImage, green);
+
         // Display images side by side
         cv::Mat combinedImg = cv::Mat();
-        combine_images(allKPImage, image, combinedImg);
+        combine_images(allKPImage, validKPImage, combinedImg);
 
         cv::imshow(windowName, combinedImg); // Show our image inside the created window.
         cv::waitKey(0);                // Wait for any keystroke in the window

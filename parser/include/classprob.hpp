@@ -16,13 +16,12 @@
 // the orb is filled with 0's.
 //
 // validKPs is a vector that upon return stores all the keypoints that have a
-// class associated with them. The vector holds the index of the keypoint in the
-// keypoints vector.
+// class associated with them. 
 void get_semantic_info(
     const std::vector<cv::KeyPoint> &kp,
     const detections_t &detections,
     cv::Mat &semantics,
-    std::vector<int> &validKPs);
+    std::vector<cv::KeyPoint> &validKPs);
 
 // Checks to see whether the keypoint is within the bouding box. Borders are
 // included.
