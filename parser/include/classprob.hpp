@@ -14,10 +14,15 @@
 // other bounding boxes or all bounding boxes that it's within need to have the
 // same class. If an or cannot meet these requirements the row corresponding to
 // the orb is filled with 0's.
+//
+// validKPs is a vector that upon return stores all the keypoints that have a
+// class associated with them. The vector holds the index of the keypoint in the
+// keypoints vector.
 void get_semantic_info(
     const std::vector<cv::KeyPoint> &kp,
     const detections_t &detections,
-    cv::Mat &semantics);
+    cv::Mat &semantics,
+    std::vector<int> &validKPs);
 
 // Checks to see whether the keypoint is within the bouding box. Borders are
 // included.

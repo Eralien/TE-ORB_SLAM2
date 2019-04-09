@@ -48,7 +48,8 @@ bool bboxes_have_same_valid_class(
 void get_semantic_info(
     const std::vector<cv::KeyPoint> &keypoints,
     const detections_t &detections,
-    cv::Mat &semantics)
+    cv::Mat &semantics,
+    std::vector<int> &validKPs)
 {
     cv::Mat zeroRow = cv::Mat::zeros(1,NUM_CLASSTYPES,CV_32FC1);
 
@@ -57,32 +58,26 @@ void get_semantic_info(
         std::vector<int> validBBoxes;
         get_num_bbox_for_keypoint(keypoints[i], detections, validBBoxes);
 
-        // Orb does not fall within a single bounding box so set all class
-        // probabilities to 0
         if (validBBoxes.size() == 0)
         {
             zeroRow.copyTo(semantics.row(i));
             continue;
         }
 
-        // Orb falls in a single bounding box
+        // Orb falls in a single bounding box or all bounding boxes share same
+        // class and class is not UNKNOWN
         CLASSTYPE classtype = detections[validBBoxes[0]]->classtype;
-        if (validBBoxes.size() == 1 && classtype != UNKNOWN)
+        if ((validBBoxes.size() == 1 && classtype != UNKNOWN) || 
+        (bboxes_have_same_valid_class(detections, validBBoxes)))
         {
             cv::Mat row = zeroRow.clone();
             row.at<float>(0, classtype) = detections[validBBoxes[0]]->prob;
             row.copyTo(semantics.row(i));
-            continue;
+            validKPs.push_back(i);
         }
 
-        // Orb falls in multiple bounding boxes - need to check and see if all
-        // the bounding boxes it falls in have the same class
-        if(bboxes_have_same_valid_class(detections, validBBoxes))
-        {
-            cv::Mat row = zeroRow.clone();
-            row.at<float>(0, classtype) = detections[validBBoxes[0]]->prob;
-            row.copyTo(semantics.row(i));
-        }
+        // Orb does not fall within a single bounding box or it falls in
+        // multiple bounding boxes and they have different classes
         else
         {
             zeroRow.copyTo(semantics.row(i));

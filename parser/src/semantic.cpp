@@ -1,5 +1,7 @@
 #include <semantic.hpp>
 
+void combine_images(cv::Mat &img1, cv::Mat &img2, cv::Mat &combinedImg);
+
 int main(int argc, char *argv[])
 {
     if (argc != 2)
@@ -50,15 +52,36 @@ int main(int argc, char *argv[])
         orb->detectAndCompute(imGray, cv::Mat(), keypoints, descriptors);
 
         // Read in semantic information from prediction file
+        std::vector<int> validKPs;
         detections_t detections = parse::get_detections(yolotxt);
         cv::Mat semantics = cv::Mat::zeros(keypoints.size(), NUM_CLASSTYPES, CV_32FC1);
-        get_semantic_info(keypoints, detections, semantics);
+        get_semantic_info(keypoints, detections, semantics, validKPs);
 
-        cv::imshow(windowName, image); // Show our image inside the created window.
+        cv::Mat combinedImg = cv::Mat();
+        combine_images(imGray, imGray, combinedImg);
+
+        cv::imshow(windowName, combinedImg); // Show our image inside the created window.
         cv::waitKey(0);                // Wait for any keystroke in the window
     }
 
     cv::destroyWindow(windowName); //destroy the created window
 
     return 0;
+}
+
+void combine_images(cv::Mat &img1, cv::Mat &img2, cv::Mat &combinedImg)
+{
+    int width = 2*img1.cols;
+    int height = img1.rows;
+
+    cv::Mat totalImg = cv::Mat(height, width, img1.type());
+    cv::Rect subImageROI = cv::Rect(0, 0, img1.cols, img1.rows);
+
+    // copy to subimage
+    img1.copyTo(totalImg(subImageROI));
+
+    subImageROI.x = img1.cols;
+    img2.copyTo(totalImg(subImageROI));
+
+    combinedImg = totalImg.clone();
 }
