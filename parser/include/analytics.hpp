@@ -1,18 +1,22 @@
+#ifndef ANALYTICS_HPP
+#define ANALYTICS_HPP
+
 #include <iostream>
 #include <vector>
 #include <fstream>
 #include <string>
 #include <algorithm>
 
-#include <parser.h>
+#include <parser.hpp>
 
 class ClassData
 {
-public:
+  public:
     std::string name;
     int count;
-public:
-    ClassData(std::string className) : name(className), count(1) {};
+
+  public:
+    ClassData(std::string className) : name(className), count(1){};
 
     bool operator==(const ClassData &other) const
     {
@@ -25,3 +29,4 @@ public:
     }
 };
 
+#endif

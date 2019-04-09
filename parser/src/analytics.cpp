@@ -2,7 +2,7 @@
 // 1. Number of different class
 // 2. Sorted list of the number of occurences of each class
 
-#include <analytics.h>
+#include <analytics.hpp>
 
 const std::string PREFIX = "../../";
 

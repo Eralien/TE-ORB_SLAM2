@@ -16,8 +16,8 @@ set( PARSER_SRC
 )
 
 set( PARSER_HEADERS       
-  include/detection.h
-  include/parser.h
+  include/detection.hpp
+  include/parser.hpp
 )
 
 INCLUDE_DIRECTORIES( ${CMAKE_CURRENT_SOURCE_DIR}/include )
@@ -30,13 +30,15 @@ target_link_libraries( detect )
 set( SEMANTIC_SRC
   src/detection.cpp
   src/parser.cpp
+  src/classprob.cpp
   src/semantic.cpp
 )
 
 set( SEMANTIC_HEADERS       
-  include/detection.h
-  include/parser.h
-  include/semantic.h
+  include/detection.hpp
+  include/parser.hpp
+  include/classprob.hpp
+  include/semantic.hpp
 )
 
 INCLUDE_DIRECTORIES( ${CMAKE_CURRENT_SOURCE_DIR}/include )
@@ -53,9 +55,9 @@ set( ANALYTIC_SRC
 )
 
 set( ANALYTIC_HEADERS       
-  include/detection.h
-  include/parser.h
-  include/analytics.h
+  include/detection.hpp
+  include/parser.hpp
+  include/analytics.hpp
 )
 
 INCLUDE_DIRECTORIES( ${CMAKE_CURRENT_SOURCE_DIR}/include )

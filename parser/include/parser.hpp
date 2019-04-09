@@ -1,9 +1,13 @@
+#ifndef PARSER_HPP
+#define PARSER_HPP
+
 #include <iostream>
 #include <fstream>
 #include <sstream>
 #include <memory>
+#include <unordered_map>
 
-#include <detection.h>
+#include <detection.hpp>
 
 class Detection;
 
@@ -29,7 +33,7 @@ detections_t get_detections(std::ifstream &predictTxt);
 // and right corners. Indices 3 and 4 represent the y value of the top and
 // bottom corners.
 std::vector<size_t> extract_bbox(std::ifstream &file);
-    
+
 // Returns the number of detections for the image currently being processed
 // The function expects the meta data information in the following format:
 //
@@ -54,3 +58,5 @@ inline bool is_probability(const std::string &s)
 }
 
 } // namespace parse
+
+#endif

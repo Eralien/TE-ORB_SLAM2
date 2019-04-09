@@ -1,5 +1,5 @@
-#include <parser.h>
-#include <detection.h>
+#include <parser.hpp>
+#include <detection.hpp>
 
 const std::string PREFIX = "../../";
 
