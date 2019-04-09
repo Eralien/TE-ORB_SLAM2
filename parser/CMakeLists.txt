@@ -36,6 +36,7 @@ set( SEMANTIC_SRC
 set( SEMANTIC_HEADERS       
   include/detection.h
   include/parser.h
+  include/semantic.h
 )
 
 INCLUDE_DIRECTORIES( ${CMAKE_CURRENT_SOURCE_DIR}/include )

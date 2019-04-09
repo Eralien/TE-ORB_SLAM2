@@ -1,3 +1,5 @@
 .vscode/
 parser/build/*
+parser/data/rgb/
+parser/data/depth/
 
