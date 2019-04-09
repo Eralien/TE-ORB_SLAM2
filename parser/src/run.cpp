@@ -15,18 +15,23 @@ void TEST_print_bbox(detections_t &detections)
     }
 }
 
-int main()
+int main(int argc, char *argv[])
 {
-    std::ifstream predictionFile(PREFIX + "/data/prediction_info.txt");
-    if(!predictionFile.is_open())
+    std::ifstream predictionFile(PREFIX + "/data/prediction_info_1_room.txt");
+    if (!predictionFile.is_open())
     {
         std::cout << "Error opening file!" << std::endl;
         return 0;
     }
- 
-    detections_t detections = parse_predictions(predictionFile);
 
-    TEST_print_bbox(detections);
+    while (!predictionFile.eof())
+    {
+        std::cout << "\nProcessing detections in Image...\n";
+        detections_t detections = parse::get_detections(predictionFile);
+        // std::cout << "Total number of detections: "
+        //           << detections.size() << std::endl;
+        TEST_print_bbox(detections);
+    }
 
     return 0;
 }
