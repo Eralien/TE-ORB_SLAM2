@@ -51,7 +51,7 @@ int main(int argc, char *argv[])
 
         // Read in semantic information from prediction file
         detections_t detections = parse::get_detections(yolotxt);
-        cv::Mat semantics = cv::Mat(keypoints.size(), NUM_CLASSTYPES, CV_32FC2);
+        cv::Mat semantics = cv::Mat::zeros(keypoints.size(), NUM_CLASSTYPES, CV_32FC1);
         get_semantic_info(keypoints, detections, semantics);
 
         cv::imshow(windowName, image); // Show our image inside the created window.
