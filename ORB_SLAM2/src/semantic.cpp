@@ -56,7 +56,6 @@ int main(int argc, char *argv[])
         // Read in semantic information from prediction file
         std::vector<cv::KeyPoint> validKPs;
         detections_t detections = parse::get_detections(yolotxt);
-        
         cv::Mat semantics = cv::Mat::zeros(keypoints.size(), NUM_CLASSTYPES, CV_32FC1);
         get_semantic_info(keypoints, detections, semantics, validKPs);
 

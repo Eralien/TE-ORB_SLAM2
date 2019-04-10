@@ -37,6 +37,7 @@ namespace ORB_SLAM2
 const int ORBmatcher::TH_HIGH = 100;
 const int ORBmatcher::TH_LOW = 50;
 const int ORBmatcher::HISTO_LENGTH = 30;
+const double ORBmatcher::LAMBDA = 0.1;
 
 ORBmatcher::ORBmatcher(float nnratio, bool checkOri): mfNNratio(nnratio), mbCheckOrientation(checkOri)
 {
@@ -1327,6 +1328,10 @@ int ORBmatcher::SearchBySim3(KeyFrame *pKF1, KeyFrame *pKF2, vector<MapPoint*> &
 
 int ORBmatcher::SearchByProjection(Frame &CurrentFrame, const Frame &LastFrame, const float th, const bool bMono)
 {
+    // This is for Motion model existing
+    // try to modify this first!!!!!! 
+    // only
+
     int nmatches = 0;
 
     // Rotation Histogram (to check rotation consistency)
@@ -1393,6 +1398,8 @@ int ORBmatcher::SearchByProjection(Frame &CurrentFrame, const Frame &LastFrame, 
                     continue;
 
                 const cv::Mat dMP = pMP->GetDescriptor();
+                const cv::Mat prob = pMP->GetProb();  // something like this
+                
 
                 int bestDist = 256;
                 int bestIdx2 = -1;
@@ -1413,8 +1420,9 @@ int ORBmatcher::SearchByProjection(Frame &CurrentFrame, const Frame &LastFrame, 
                     }
 
                     const cv::Mat &d = CurrentFrame.mDescriptors.row(i2);
+                    const cv::Mat &p = CurrentFrame.mSemantic.row(i2)  // pull out CurrentFrame probability
 
-                    const int dist = DescriptorDistance(dMP,d);
+                    const int dist = DescriptorDistance(dMP,d) + LAMBDA * SemanticDistance(prob, p)  // to add 
 
                     if(dist<bestDist)
                     {
@@ -1660,6 +1668,12 @@ int ORBmatcher::DescriptorDistance(const cv::Mat &a, const cv::Mat &b)
     }
 
     return dist;
+}
+
+double ORBmatcher::SemanticDistance(const cv::Mat &a, const cv::Mat &b)
+{
+    // a, b are row vectors with probablity from MapPoint
+    return cv::norm(a, b);
 }
 
 } //namespace ORB_SLAM

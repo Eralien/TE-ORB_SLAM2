@@ -73,6 +73,9 @@ public:
     void ComputeDistinctiveDescriptors();
 
     cv::Mat GetDescriptor();
+    // add GetProb()
+    cv::Mat GetProb();
+
 
     void UpdateNormalAndDepth();
 
@@ -125,6 +128,9 @@ protected:
 
      // Best descriptor to fast matching
      cv::Mat mDescriptor;
+
+     // Best semantic prob to fast matching
+     cv::Mat msemantic;
 
      // Reference KeyFrame
      KeyFrame* mpRefKF;
