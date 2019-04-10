@@ -195,9 +195,9 @@ Frame::Frame(const cv::Mat &imGray, const double &timeStamp, ORBextractor* extra
     ExtractORB(0,imGray);
 
     // Semantic extraction  // TO be modified... add matching functino between ORB/kps and bbox/semantic
-    mSemantic = cv::Mat::zeros(keypoints.size(), NUM_CLASSTYPES, CV_32FC1)
+    mSemantic = cv::Mat::zeros(mvKeys.size(), NUM_CLASSTYPES, CV_32FC1);
     std::vector<cv::KeyPoint> validKPs;
-    get_semantic_info(keypoints, detections, mSemantic, validKPs);
+    get_semantic_info(mvKeys, detections, mSemantic, validKPs);
 
 
     N = mvKeys.size();

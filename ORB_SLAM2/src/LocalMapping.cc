@@ -151,6 +151,7 @@ void LocalMapping::ProcessNewKeyFrame()
                     pMP->AddObservation(mpCurrentKeyFrame, i);
                     pMP->UpdateNormalAndDepth();
                     pMP->ComputeDistinctiveDescriptors();
+                    pMP->ComputeDistinctiveSemantic();
                 }
                 else // this can only happen for new stereo points inserted by the Tracking
                 {
@@ -440,6 +441,7 @@ void LocalMapping::CreateNewMapPoints()
             pKF2->AddMapPoint(pMP,idx2);
 
             pMP->ComputeDistinctiveDescriptors();
+            pMP->ComputeDistinctiveSemantic();
 
             pMP->UpdateNormalAndDepth();
 
@@ -524,6 +526,7 @@ void LocalMapping::SearchInNeighbors()
             if(!pMP->isBad())
             {
                 pMP->ComputeDistinctiveDescriptors();
+                pMP->ComputeDistinctiveSemantic();
                 pMP->UpdateNormalAndDepth();
             }
         }

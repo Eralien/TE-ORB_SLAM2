@@ -71,6 +71,7 @@ public:
     }
 
     void ComputeDistinctiveDescriptors();
+    void ComputeDistinctiveSemantic();
 
     cv::Mat GetDescriptor();
     // add GetProb()

@@ -37,7 +37,7 @@ namespace ORB_SLAM2
 const int ORBmatcher::TH_HIGH = 100;
 const int ORBmatcher::TH_LOW = 50;
 const int ORBmatcher::HISTO_LENGTH = 30;
-const double ORBmatcher::LAMBDA = 0.1;
+const double ORBmatcher::LAMBDA = 0.0;
 
 ORBmatcher::ORBmatcher(float nnratio, bool checkOri): mfNNratio(nnratio), mbCheckOrientation(checkOri)
 {
@@ -1420,9 +1420,9 @@ int ORBmatcher::SearchByProjection(Frame &CurrentFrame, const Frame &LastFrame, 
                     }
 
                     const cv::Mat &d = CurrentFrame.mDescriptors.row(i2);
-                    const cv::Mat &p = CurrentFrame.mSemantic.row(i2)  // pull out CurrentFrame probability
+                    const cv::Mat &p = CurrentFrame.mSemantic.row(i2);  // pull out CurrentFrame probability
 
-                    const int dist = DescriptorDistance(dMP,d) + LAMBDA * SemanticDistance(prob, p)  // to add 
+                    const int dist = DescriptorDistance(dMP,d) + LAMBDA * SemanticDistance(prob, p);  // to add 
 
                     if(dist<bestDist)
                     {

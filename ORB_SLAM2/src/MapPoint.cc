@@ -210,6 +210,7 @@ void MapPoint::Replace(MapPoint* pMP)
     pMP->IncreaseFound(nfound);
     pMP->IncreaseVisible(nvisible);
     pMP->ComputeDistinctiveDescriptors();
+    pMP->ComputeDistinctiveSemantic();
 
     mpMap->EraseMapPoint(this);
 }
@@ -305,6 +306,50 @@ void MapPoint::ComputeDistinctiveDescriptors()
         mDescriptor = vDescriptors[BestIdx].clone();
     }
 }
+
+
+void MapPoint::ComputeDistinctiveSemantic()
+{
+    // initialize msemantic
+    
+    map<KeyFrame*,size_t> observations;
+
+    {
+        unique_lock<mutex> lock1(mMutexFeatures);
+        if(mbBad)
+            return;
+        observations=mObservations;
+    }
+
+    if(observations.empty())
+        return;
+
+    cv::Mat vSemantic;
+    
+
+    for(map<KeyFrame*,size_t>::iterator mit=observations.begin(), mend=observations.end(); mit!=mend; mit++)
+    {
+        KeyFrame* pKF = mit->first;
+
+        if(!pKF->isBad()){
+            vSemantic.push_back(pKF->mSemantic.row(mit->second));
+        }
+    }
+
+    if (vSemantic.empty())
+        return;
+
+    // find the median of each column
+    const size_t N = vSemantic.rows;
+    cv::Mat vSemantic_sorted;
+
+    cv::sort(vSemantic, vSemantic_sorted, CV_SORT_EVERY_COLUMN);
+
+    msemantic = vSemantic_sorted.row(size_t(0.5*N));
+
+}
+
+
 
 cv::Mat MapPoint::GetDescriptor()
 {
