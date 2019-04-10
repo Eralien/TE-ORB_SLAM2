@@ -34,10 +34,12 @@ using namespace std;
 namespace ORB_SLAM2
 {
 
-const int ORBmatcher::TH_HIGH = 100;
+const int ORBmatcher::TH_HIGH = 120;
 const int ORBmatcher::TH_LOW = 50;
 const int ORBmatcher::HISTO_LENGTH = 30;
-const double ORBmatcher::LAMBDA = 0.0;
+
+const double ORBmatcher::ALPHA = 0.50;
+const double ORBmatcher::LAMBDA = 40;
 
 ORBmatcher::ORBmatcher(float nnratio, bool checkOri): mfNNratio(nnratio), mbCheckOrientation(checkOri)
 {
@@ -195,7 +197,9 @@ int ORBmatcher::SearchByBoW(KeyFrame* pKF,Frame &F, vector<MapPoint*> &vpMapPoin
                     continue;
 
                 if(pMP->isBad())
-                    continue;                
+                    continue;
+
+                const cv::Mat p = pKF->mSemantic.row(realIdxKF);  // pull out CurrentFrame probability
 
                 const cv::Mat &dKF= pKF->mDescriptors.row(realIdxKF);
 
@@ -211,8 +215,9 @@ int ORBmatcher::SearchByBoW(KeyFrame* pKF,Frame &F, vector<MapPoint*> &vpMapPoin
                         continue;
 
                     const cv::Mat &dF = F.mDescriptors.row(realIdxF);
+                    const cv::Mat pF = F.mSemantic.row(realIdxF);
 
-                    const int dist =  DescriptorDistance(dKF,dF);
+                    const int dist = ALPHA * 2 * DescriptorDistance(dKF,dF); //+ LAMBDA * SemanticDistance(p, pF);
 
                     if(dist<bestDist1)
                     {
@@ -1402,6 +1407,7 @@ int ORBmatcher::SearchByProjection(Frame &CurrentFrame, const Frame &LastFrame, 
                 
 
                 int bestDist = 256;
+                double bestSeman = 2;
                 int bestIdx2 = -1;
 
                 for(vector<size_t>::const_iterator vit=vIndices2.begin(), vend=vIndices2.end(); vit!=vend; vit++)
@@ -1420,16 +1426,24 @@ int ORBmatcher::SearchByProjection(Frame &CurrentFrame, const Frame &LastFrame, 
                     }
 
                     const cv::Mat &d = CurrentFrame.mDescriptors.row(i2);
-                    const cv::Mat &p = CurrentFrame.mSemantic.row(i2);  // pull out CurrentFrame probability
+                    const cv::Mat p = CurrentFrame.mSemantic.row(i2);  // pull out CurrentFrame probability
+                    double seman = SemanticDistance(prob, p);
 
-                    const int dist = DescriptorDistance(dMP,d) + LAMBDA * SemanticDistance(prob, p);  // to add 
+                    const int dist = ALPHA * DescriptorDistance(dMP,d) + LAMBDA * seman;  // to add
+
+//                    cout << "Semantic = " << SemanticDistance(prob, p) << endl;
 
                     if(dist<bestDist)
                     {
                         bestDist=dist;
                         bestIdx2=i2;
                     }
+
+                    bestSeman = std::min(bestSeman, seman);
+
                 }
+                cout << "best dist = " << bestDist << endl;
+                cout << "best semantic = " << 50 * bestSeman << endl;
 
                 if(bestDist<=TH_HIGH)
                 {
@@ -1673,7 +1687,10 @@ int ORBmatcher::DescriptorDistance(const cv::Mat &a, const cv::Mat &b)
 double ORBmatcher::SemanticDistance(const cv::Mat &a, const cv::Mat &b)
 {
     // a, b are row vectors with probablity from MapPoint
-    return cv::norm(a, b);
+    double result = cv::norm(a, b);
+    if (result < 1e-8)
+        result = 1;
+    return result;
 }
 
 } //namespace ORB_SLAM

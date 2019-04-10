@@ -198,7 +198,7 @@ Frame::Frame(const cv::Mat &imGray, const double &timeStamp, ORBextractor* extra
     mSemantic = cv::Mat::zeros(mvKeys.size(), NUM_CLASSTYPES, CV_32FC1);
     std::vector<cv::KeyPoint> validKPs;
     get_semantic_info(mvKeys, detections, mSemantic, validKPs);
-
+//    printf("mSemantic row %d %d\n ", mSemantic.rows, mSemantic.cols);
 
     N = mvKeys.size();
 

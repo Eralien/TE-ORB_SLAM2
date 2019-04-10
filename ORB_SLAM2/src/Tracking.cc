@@ -886,13 +886,14 @@ bool Tracking::TrackWithMotionModel()
     int nmatches = matcher.SearchByProjection(mCurrentFrame,mLastFrame,th,mSensor==System::MONOCULAR);
 
     // If few matches, uses a wider window search
-    if(nmatches<20)
+    int thre = 15;
+    if(nmatches<thre)
     {
         fill(mCurrentFrame.mvpMapPoints.begin(),mCurrentFrame.mvpMapPoints.end(),static_cast<MapPoint*>(NULL));
         nmatches = matcher.SearchByProjection(mCurrentFrame,mLastFrame,2*th,mSensor==System::MONOCULAR);
     }
 
-    if(nmatches<20)
+    if(nmatches<thre)
         return false;
 
     // Optimize frame pose with all matches
@@ -1396,7 +1397,7 @@ bool Tracking::Relocalization()
     // Until we found a camera pose supported by enough inliers
     bool bMatch = false;
     ORBmatcher matcher2(0.9,true);
-
+    cout << "candidate  = " << nCandidates << endl;
     while(nCandidates>0 && !bMatch)
     {
         for(int i=0; i<nKFs; i++)

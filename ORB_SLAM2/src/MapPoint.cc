@@ -324,14 +324,19 @@ void MapPoint::ComputeDistinctiveSemantic()
     if(observations.empty())
         return;
 
+
     cv::Mat vSemantic;
+//    cv::Mat test = cv::Mat(2,4, CV_32F);
+
     
 
     for(map<KeyFrame*,size_t>::iterator mit=observations.begin(), mend=observations.end(); mit!=mend; mit++)
     {
         KeyFrame* pKF = mit->first;
-
-        if(!pKF->isBad()){
+        if(!pKF->isBad()) {
+//            std::cout << "visualizing ";
+//            std::cout << "test = " << pKF->mSemantic << endl;
+//            std::cout << pKF->mSemantic.row(mit->second) << std::endl;
             vSemantic.push_back(pKF->mSemantic.row(mit->second));
         }
     }
