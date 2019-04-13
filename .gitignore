@@ -2,4 +2,7 @@
 parser/build/*
 parser/data/rgb/
 parser/data/depth/
+cv_odo/data/rgb/
+cv_odo/data/depth/
+cv_odo/build/*
 
