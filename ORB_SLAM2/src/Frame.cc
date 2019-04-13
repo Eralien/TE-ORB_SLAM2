@@ -43,6 +43,7 @@ Frame::Frame(const Frame &frame)
      mvKeysRight(frame.mvKeysRight), mvKeysUn(frame.mvKeysUn),  mvuRight(frame.mvuRight),
      mvDepth(frame.mvDepth), mBowVec(frame.mBowVec), mFeatVec(frame.mFeatVec),
      mDescriptors(frame.mDescriptors.clone()), mDescriptorsRight(frame.mDescriptorsRight.clone()),
+     mSemantic(frame.mSemantic.clone()),
      mvpMapPoints(frame.mvpMapPoints), mvbOutlier(frame.mvbOutlier), mnId(frame.mnId),
      mpReferenceKF(frame.mpReferenceKF), mnScaleLevels(frame.mnScaleLevels),
      mfScaleFactor(frame.mfScaleFactor), mfLogScaleFactor(frame.mfLogScaleFactor),
@@ -171,12 +172,15 @@ Frame::Frame(const cv::Mat &imGray, const cv::Mat &imDepth, const double &timeSt
 }
 
 
-Frame::Frame(const cv::Mat &imGray, const double &timeStamp, ORBextractor* extractor,ORBVocabulary* voc, cv::Mat &K, cv::Mat &distCoef, const float &bf, const float &thDepth)
+Frame::Frame(const cv::Mat &imGray, const double &timeStamp, ORBextractor* extractor,ORBVocabulary* voc, cv::Mat &K, cv::Mat &distCoef, const float &bf, const float &thDepth, const detections_t &detections)
     :mpORBvocabulary(voc),mpORBextractorLeft(extractor),mpORBextractorRight(static_cast<ORBextractor*>(NULL)),
      mTimeStamp(timeStamp), mK(K.clone()),mDistCoef(distCoef.clone()), mbf(bf), mThDepth(thDepth)
 {
+    // THIS IS FOR MONOCULAR!! 
+    // MODIFY THIS FOR NOW!!
     // Frame ID
     mnId=nNextId++;
+
 
     // Scale Level Info
     mnScaleLevels = mpORBextractorLeft->GetLevels();
@@ -189,6 +193,12 @@ Frame::Frame(const cv::Mat &imGray, const double &timeStamp, ORBextractor* extra
 
     // ORB extraction
     ExtractORB(0,imGray);
+
+    // Semantic extraction  // TO be modified... add matching functino between ORB/kps and bbox/semantic
+    mSemantic = cv::Mat::zeros(keypoints.size(), NUM_CLASSTYPES, CV_32FC1)
+    std::vector<cv::KeyPoint> validKPs;
+    get_semantic_info(keypoints, detections, mSemantic, validKPs);
+
 
     N = mvKeys.size();
 

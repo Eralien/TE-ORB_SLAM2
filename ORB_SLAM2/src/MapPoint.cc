@@ -312,6 +312,14 @@ cv::Mat MapPoint::GetDescriptor()
     return mDescriptor.clone();
 }
 
+
+cv::Mat MapPoint::GetProb()
+{
+    unique_lock<mutex> lock(mMutexFeatures);
+    return msemantic.clone();
+}
+
+
 int MapPoint::GetIndexInKeyFrame(KeyFrame *pKF)
 {
     unique_lock<mutex> lock(mMutexFeatures);

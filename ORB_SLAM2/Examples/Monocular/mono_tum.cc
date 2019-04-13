@@ -28,6 +28,9 @@
 
 #include<System.h>
 
+// modified
+#include<semantic.hpp>
+
 using namespace std;
 
 void LoadImages(const string &strFile, vector<string> &vstrImageFilenames,
@@ -35,6 +38,7 @@ void LoadImages(const string &strFile, vector<string> &vstrImageFilenames,
 
 int main(int argc, char **argv)
 {
+
     if(argc != 4)
     {
         cerr << endl << "Usage: ./mono_tum path_to_vocabulary path_to_settings path_to_sequence" << endl;
@@ -60,6 +64,16 @@ int main(int argc, char **argv)
     cout << "Start processing sequence ..." << endl;
     cout << "Images in the sequence: " << nImages << endl << endl;
 
+
+    // Read the bbox info from external files and save it as a mapping[ni] -> bbox
+    std::ifstream yolotxt(YOLO_TXT);
+    if (!yolotxt.is_open())
+    {
+        std::cout << "Unable to read in the yolo detections from " << YOLO_TXT << std::endl;
+    }
+
+    
+
     // Main loop
     cv::Mat im;
     for(int ni=0; ni<nImages; ni++)
@@ -81,8 +95,10 @@ int main(int argc, char **argv)
         std::chrono::monotonic_clock::time_point t1 = std::chrono::monotonic_clock::now();
 #endif
 
+        detections_t detections = parse::get_detections(yolotxt);
+
         // Pass the image to the SLAM system
-        SLAM.TrackMonocular(im,tframe);
+        SLAM.TrackMonocular(im,tframe, detections); // To be modified... only pass reference of bbox of current frame. e.g. mapping[ni]
 
 #ifdef COMPILEDWITHC11
         std::chrono::steady_clock::time_point t2 = std::chrono::steady_clock::now();
