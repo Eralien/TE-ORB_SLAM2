@@ -2,4 +2,11 @@
 parser/build/*
 parser/data/rgb/
 parser/data/depth/
-
+cv_odo/data/rgb/
+cv_odo/data/depth/
+cv_odo/build/*
+OpenCV-RgbdOdometry/fr2_pioneer_360/rgb/
+OpenCV-RgbdOdometry/fr2_pioneer_360/depth/
+OpenCV-RgbdOdometry/data/rgb/
+OpenCV-RgbdOdometry/data/depth/
+OpenCV-RgbdOdometry/build/*
