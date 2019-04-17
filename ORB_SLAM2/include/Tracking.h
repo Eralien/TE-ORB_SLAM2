@@ -128,6 +128,10 @@ public:
 
     void Reset();
 
+    // temp counter
+    int fail_counter;
+    int total_counter;
+
 protected:
 
     // Main tracking function. It is independent of the input sensor.

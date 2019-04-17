@@ -39,8 +39,34 @@
 
 #include<mutex>
 
+const float CameraParams::FOCUS_LENGTH = 525.0;
+const float CameraParams::CX = 325.1;
+const float CameraParams::CY = 249.7;
+
+const float CameraParams::MIN_DEPTH = 0.8f;        // in meters
+const float CameraParams::MAX_DEPTH = 4.0f;        // in meters
+const float CameraParams::MAX_DEPTH_DIFF = 0.08f;  // in meters
+const float CameraParams::MAX_POINTS_PART = 0.09f;
+
+const float CameraParams::PIXEL_TO_METER_SCALEFACTOR = 0.0002;
 
 using namespace std;
+
+bool matIsEqual(const cv::Mat mat1, const cv::Mat mat2){
+    // treat two empty mat as identical as well
+    if (mat1.empty() && mat2.empty()) {
+        return true;
+    }
+    // if dimensionality of two mat is not identical, these two mat is not identical
+    if (mat1.cols != mat2.cols || mat1.rows != mat2.rows || mat1.dims != mat2.dims) {
+        return false;
+    }
+    cv::Mat diff;
+    cv::compare(mat1, mat2, diff, cv::CMP_NE);
+    int nz = cv::countNonZero(diff);
+    return nz==0;
+}
+
 
 namespace ORB_SLAM2
 {
@@ -51,7 +77,8 @@ Tracking::Tracking(System *pSys, ORBVocabulary* pVoc, FrameDrawer *pFrameDrawer,
     mpFrameDrawer(pFrameDrawer), mpMapDrawer(pMapDrawer), mpMap(pMap), mnLastRelocFrameId(0)
 {
     // Load camera parameters from settings file
-
+    fail_counter = 0;
+    total_counter = 0;
     cv::FileStorage fSettings(strSettingPath, cv::FileStorage::READ);
     float fx = fSettings["Camera.fx"];
     float fy = fSettings["Camera.fy"];
@@ -237,7 +264,23 @@ cv::Mat Tracking::GrabImageRGBD(const cv::Mat &imRGB,const cv::Mat &imD, const d
 
     mCurrentFrame = Frame(mImGray,mImDepth,timestamp,mpORBextractorLeft,mpORBVocabulary,mK,mDistCoef,mbf,mThDepth);
 
+    bool isEqual1 = matIsEqual(mImGray, mImGrayPrev);
+    bool isEqual2 = matIsEqual(mImDepth, mImDepthPrev);
+
     Track();
+
+    // temp test
+    cv::Mat rigidTransform;
+    bool bOK;
+    if (!mImGrayPrev.empty() && !mImDepthPrev.empty()){
+        bOK = rgb_odo.odom->compute(mImGrayPrev, mImDepthPrev, cv::Mat(), mImGray, mImDepth, cv::Mat(), rigidTransform);
+        total_counter += 1;
+        cout << "total counter = " << total_counter << endl;
+        if (!bOK) {
+            fail_counter += 1;
+            cout << "fail counter = " << fail_counter << endl;
+        }
+    }
 
     mImGray.copyTo(mImGrayPrev);
     mImDepth.copyTo(mImDepthPrev);
@@ -317,6 +360,7 @@ void Tracking::Track()
 
                 if(mVelocity.empty() || mCurrentFrame.mnId<mnLastRelocFrameId+2)
                 {
+                    cout << "1: " << mVelocity.empty() << endl;
                     bOK = TrackReferenceKeyFrame();
                 }
                 else
@@ -328,7 +372,16 @@ void Tracking::Track()
                         cv::Mat rigidTransform;
                         if (!mImGrayPrev.empty() && !mImDepthPrev.empty()){
                             bOK = rgb_odo.odom->compute(mImGrayPrev, mImDepthPrev, cv::Mat(), mImGray, mImDepth, cv::Mat(), rigidTransform);
-                            mCurrentFrame.SetPose(rigidTransform*mLastFrame.mTcw);
+                            rigidTransform.convertTo(rigidTransform, CV_32F);
+                            cout << "rigidTransform =  " << rigidTransform << "  mTcw = " << mLastFrame.mTcw << endl;
+                            cout << "bok = " << bOK << endl;
+                            if (!bOK){
+                                cout << "using mVelocity to propogate ... " << endl;
+                                mCurrentFrame.SetPose(mVelocity*mLastFrame.mTcw);
+                            }else {
+                                cout << "using rigidTransform to propagate ... " << endl;
+                                mCurrentFrame.SetPose(rigidTransform * mLastFrame.mTcw);
+                            }
                         }
                     }
                 }
@@ -429,8 +482,10 @@ void Tracking::Track()
 
         if(bOK)
             mState = OK;
-        else
-            mState=LOST;
+        else {
+            cout << "It is losing !!!!!!!!!!!" << endl;
+            mState = OK;
+        }
 
         // Update drawer
         mpFrameDrawer->Update(this);

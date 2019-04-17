@@ -2,7 +2,7 @@
 #define RGBDODO_HPP
 
 
-#include <opencv2/rgbd/depth.hpp>
+#include "rgbd.hpp"
 #include <opencv2/opencv.hpp>
 #include <opencv2/imgproc/imgproc.hpp>
 
@@ -25,17 +25,6 @@ class CameraParams
     // This is for TUM dataset
     static const float PIXEL_TO_METER_SCALEFACTOR;
 };
-
-const float CameraParams::FOCUS_LENGTH = 525.0;
-const float CameraParams::CX = 325.1;
-const float CameraParams::CY = 249.7;
-
-const float CameraParams::MIN_DEPTH = 0.8f;        // in meters
-const float CameraParams::MAX_DEPTH = 4.0f;        // in meters
-const float CameraParams::MAX_DEPTH_DIFF = 0.08f;  // in meters
-const float CameraParams::MAX_POINTS_PART = 0.09f;
-
-const float CameraParams::PIXEL_TO_METER_SCALEFACTOR = 0.0002;
 
 class RGB_ODO
 {
