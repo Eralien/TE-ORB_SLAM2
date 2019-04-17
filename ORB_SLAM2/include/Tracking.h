@@ -38,6 +38,8 @@
 #include "MapDrawer.h"
 #include "System.h"
 
+#include "rgbdodo.hpp"
+
 #include <mutex>
 
 namespace ORB_SLAM2
@@ -95,6 +97,14 @@ public:
     // Current Frame
     Frame mCurrentFrame;
     cv::Mat mImGray;
+    
+    // RGB Odom
+    cv::Mat mImGrayPrev;
+    cv::Mat mImDepth;
+    cv::Mat mImDepthPrev;
+
+
+
 
     // Initialization Variables (Monocular)
     std::vector<int> mvIniLastMatches;
@@ -112,6 +122,9 @@ public:
 
     // True if local mapping is deactivated and we are performing only localization
     bool mbOnlyTracking;
+
+    // RGBD odometry
+    RGB_ODO rgb_odo; 
 
     void Reset();
 

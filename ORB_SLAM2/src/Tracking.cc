@@ -35,6 +35,8 @@
 
 #include<iostream>
 
+
+
 #include<mutex>
 
 
@@ -44,7 +46,7 @@ namespace ORB_SLAM2
 {
 
 Tracking::Tracking(System *pSys, ORBVocabulary* pVoc, FrameDrawer *pFrameDrawer, MapDrawer *pMapDrawer, Map *pMap, KeyFrameDatabase* pKFDB, const string &strSettingPath, const int sensor):
-    mState(NO_IMAGES_YET), mSensor(sensor), mbOnlyTracking(false), mbVO(false), mpORBVocabulary(pVoc),
+    mState(NO_IMAGES_YET), mSensor(sensor), mbOnlyTracking(false), rgb_odo(RGB_ODO()),mbVO(false), mpORBVocabulary(pVoc),
     mpKeyFrameDB(pKFDB), mpInitializer(static_cast<Initializer*>(NULL)), mpSystem(pSys), mpViewer(NULL),
     mpFrameDrawer(pFrameDrawer), mpMapDrawer(pMapDrawer), mpMap(pMap), mnLastRelocFrameId(0)
 {
@@ -62,6 +64,12 @@ Tracking::Tracking(System *pSys, ORBVocabulary* pVoc, FrameDrawer *pFrameDrawer,
     K.at<float>(0,2) = cx;
     K.at<float>(1,2) = cy;
     K.copyTo(mK);
+
+    // sets the camera parameters (focal length, cx, cy)
+    rgb_odo.createCameraMatrix(mK);
+    // sets the paramters for the compute funciton
+    rgb_odo.setupParams();
+
 
     cv::Mat DistCoef(4,1,CV_32F);
     DistCoef.at<float>(0) = fSettings["Camera.k1"];
@@ -207,7 +215,7 @@ cv::Mat Tracking::GrabImageStereo(const cv::Mat &imRectLeft, const cv::Mat &imRe
 cv::Mat Tracking::GrabImageRGBD(const cv::Mat &imRGB,const cv::Mat &imD, const double &timestamp)
 {
     mImGray = imRGB;
-    cv::Mat imDepth = imD;
+    mImDepth = imD;
 
     if(mImGray.channels()==3)
     {
@@ -224,12 +232,15 @@ cv::Mat Tracking::GrabImageRGBD(const cv::Mat &imRGB,const cv::Mat &imD, const d
             cvtColor(mImGray,mImGray,CV_BGRA2GRAY);
     }
 
-    if((fabs(mDepthMapFactor-1.0f)>1e-5) || imDepth.type()!=CV_32F)
-        imDepth.convertTo(imDepth,CV_32F,mDepthMapFactor);
+    if((fabs(mDepthMapFactor-1.0f)>1e-5) || mImDepth.type()!=CV_32F)
+        mImDepth.convertTo(mImDepth,CV_32F,mDepthMapFactor);
 
-    mCurrentFrame = Frame(mImGray,imDepth,timestamp,mpORBextractorLeft,mpORBVocabulary,mK,mDistCoef,mbf,mThDepth);
+    mCurrentFrame = Frame(mImGray,mImDepth,timestamp,mpORBextractorLeft,mpORBVocabulary,mK,mDistCoef,mbf,mThDepth);
 
     Track();
+
+    mImGray.copyTo(mImGrayPrev);
+    mImDepth.copyTo(mImDepthPrev);
 
     return mCurrentFrame.mTcw.clone();
 }
@@ -313,6 +324,13 @@ void Tracking::Track()
                     bOK = TrackWithMotionModel();
                     if(!bOK)
                         bOK = TrackReferenceKeyFrame();
+                    if (!bOK){
+                        cv::Mat rigidTransform;
+                        if (!mImGrayPrev.empty() && !mImDepthPrev.empty()){
+                            bOK = rgb_odo.odom->compute(mImGrayPrev, mImDepthPrev, cv::Mat(), mImGray, mImDepth, cv::Mat(), rigidTransform);
+                            mCurrentFrame.SetPose(rigidTransform*mLastFrame.mTcw);
+                        }
+                    }
                 }
             }
             else
