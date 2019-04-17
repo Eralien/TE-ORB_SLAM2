@@ -166,10 +166,6 @@ public:
     const std::vector<float> mvDepth; // negative value for monocular points
     const cv::Mat mDescriptors;
 
-    // Semantic Probability vector, each row associated to a keypoint. Dim = N * Num_classes
-    // cv::Mat mSemantic;
-    const cv::Mat mSemantic;
-
     //BoW
     DBoW2::BowVector mBowVec;
     DBoW2::FeatureVector mFeatVec;

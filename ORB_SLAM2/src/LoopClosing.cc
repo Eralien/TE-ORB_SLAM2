@@ -530,7 +530,6 @@ void LoopClosing::CorrectLoop()
                     mpCurrentKF->AddMapPoint(pLoopMP,i);
                     pLoopMP->AddObservation(mpCurrentKF,i);
                     pLoopMP->ComputeDistinctiveDescriptors();
-                    pLoopMP->ComputeDistinctiveSemantic();
                 }
             }
         }

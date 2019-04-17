@@ -23,7 +23,6 @@
 #define ORBMATCHER_H
 
 #include<vector>
-#include<cmath>
 #include<opencv2/core/core.hpp>
 #include<opencv2/features2d/features2d.hpp>
 
@@ -43,8 +42,6 @@ public:
 
     // Computes the Hamming distance between two ORB descriptors
     static int DescriptorDistance(const cv::Mat &a, const cv::Mat &b);
-
-    static double SemanticDistance(const cv::Mat &a, const cv::Mat &b);
 
     // Search matches between Frame keypoints and projected MapPoints. Returns number of matches
     // Used to track the local map (Tracking)
@@ -90,8 +87,6 @@ public:
     static const int TH_LOW;
     static const int TH_HIGH;
     static const int HISTO_LENGTH;
-    static const double ALPHA;
-    static const double LAMBDA;
 
 
 protected:

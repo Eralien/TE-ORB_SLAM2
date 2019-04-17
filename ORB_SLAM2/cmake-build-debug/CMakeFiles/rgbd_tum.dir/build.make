@@ -43,10 +43,10 @@ RM = /snap/clion/67/bin/cmake/linux/bin/cmake -E remove -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/yueshen/mobile-robotics/SemanticORB-SLAM/ORB_SLAM2
+CMAKE_SOURCE_DIR = /home/huisun/git-repos/SemanticORB-SLAM/ORB_SLAM2
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/yueshen/mobile-robotics/SemanticORB-SLAM/ORB_SLAM2/cmake-build-debug
+CMAKE_BINARY_DIR = /home/huisun/git-repos/SemanticORB-SLAM/ORB_SLAM2/cmake-build-debug
 
 # Include any dependencies generated for this target.
 include CMakeFiles/rgbd_tum.dir/depend.make
@@ -59,16 +59,16 @@ include CMakeFiles/rgbd_tum.dir/flags.make
 
 CMakeFiles/rgbd_tum.dir/Examples/RGB-D/rgbd_tum.cc.o: CMakeFiles/rgbd_tum.dir/flags.make
 CMakeFiles/rgbd_tum.dir/Examples/RGB-D/rgbd_tum.cc.o: ../Examples/RGB-D/rgbd_tum.cc
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/yueshen/mobile-robotics/SemanticORB-SLAM/ORB_SLAM2/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/rgbd_tum.dir/Examples/RGB-D/rgbd_tum.cc.o"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/rgbd_tum.dir/Examples/RGB-D/rgbd_tum.cc.o -c /home/yueshen/mobile-robotics/SemanticORB-SLAM/ORB_SLAM2/Examples/RGB-D/rgbd_tum.cc
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/huisun/git-repos/SemanticORB-SLAM/ORB_SLAM2/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/rgbd_tum.dir/Examples/RGB-D/rgbd_tum.cc.o"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/rgbd_tum.dir/Examples/RGB-D/rgbd_tum.cc.o -c /home/huisun/git-repos/SemanticORB-SLAM/ORB_SLAM2/Examples/RGB-D/rgbd_tum.cc
 
 CMakeFiles/rgbd_tum.dir/Examples/RGB-D/rgbd_tum.cc.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/rgbd_tum.dir/Examples/RGB-D/rgbd_tum.cc.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/yueshen/mobile-robotics/SemanticORB-SLAM/ORB_SLAM2/Examples/RGB-D/rgbd_tum.cc > CMakeFiles/rgbd_tum.dir/Examples/RGB-D/rgbd_tum.cc.i
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/huisun/git-repos/SemanticORB-SLAM/ORB_SLAM2/Examples/RGB-D/rgbd_tum.cc > CMakeFiles/rgbd_tum.dir/Examples/RGB-D/rgbd_tum.cc.i
 
 CMakeFiles/rgbd_tum.dir/Examples/RGB-D/rgbd_tum.cc.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/rgbd_tum.dir/Examples/RGB-D/rgbd_tum.cc.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/yueshen/mobile-robotics/SemanticORB-SLAM/ORB_SLAM2/Examples/RGB-D/rgbd_tum.cc -o CMakeFiles/rgbd_tum.dir/Examples/RGB-D/rgbd_tum.cc.s
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/huisun/git-repos/SemanticORB-SLAM/ORB_SLAM2/Examples/RGB-D/rgbd_tum.cc -o CMakeFiles/rgbd_tum.dir/Examples/RGB-D/rgbd_tum.cc.s
 
 # Object files for target rgbd_tum
 rgbd_tum_OBJECTS = \
@@ -96,7 +96,7 @@ rgbd_tum_EXTERNAL_OBJECTS =
 ../Examples/RGB-D/rgbd_tum: /usr/local/lib/libopencv_imgcodecs.so.3.2.0
 ../Examples/RGB-D/rgbd_tum: /usr/local/lib/libopencv_imgproc.so.3.2.0
 ../Examples/RGB-D/rgbd_tum: /usr/local/lib/libopencv_core.so.3.2.0
-../Examples/RGB-D/rgbd_tum: /home/yueshen/mobile-robotics/Pangolin/build/src/libpangolin.so
+../Examples/RGB-D/rgbd_tum: /home/huisun/Pangolin/build/src/libpangolin.so
 ../Examples/RGB-D/rgbd_tum: /usr/lib/x86_64-linux-gnu/libGLU.so
 ../Examples/RGB-D/rgbd_tum: /usr/lib/x86_64-linux-gnu/libGL.so
 ../Examples/RGB-D/rgbd_tum: /usr/lib/x86_64-linux-gnu/libGLEW.so
@@ -104,10 +104,22 @@ rgbd_tum_EXTERNAL_OBJECTS =
 ../Examples/RGB-D/rgbd_tum: /usr/lib/x86_64-linux-gnu/libICE.so
 ../Examples/RGB-D/rgbd_tum: /usr/lib/x86_64-linux-gnu/libX11.so
 ../Examples/RGB-D/rgbd_tum: /usr/lib/x86_64-linux-gnu/libXext.so
+../Examples/RGB-D/rgbd_tum: /usr/lib/x86_64-linux-gnu/libdc1394.so
+../Examples/RGB-D/rgbd_tum: /usr/lib/x86_64-linux-gnu/libavcodec.so
+../Examples/RGB-D/rgbd_tum: /usr/lib/x86_64-linux-gnu/libavformat.so
+../Examples/RGB-D/rgbd_tum: /usr/lib/x86_64-linux-gnu/libavutil.so
+../Examples/RGB-D/rgbd_tum: /usr/lib/x86_64-linux-gnu/libswscale.so
+../Examples/RGB-D/rgbd_tum: /usr/lib/x86_64-linux-gnu/libavdevice.so
+../Examples/RGB-D/rgbd_tum: /usr/local/lib/x86_64-linux-gnu/libuvc.so
+../Examples/RGB-D/rgbd_tum: /usr/lib/x86_64-linux-gnu/libpng.so
+../Examples/RGB-D/rgbd_tum: /usr/lib/x86_64-linux-gnu/libz.so
+../Examples/RGB-D/rgbd_tum: /usr/lib/x86_64-linux-gnu/libjpeg.so
+../Examples/RGB-D/rgbd_tum: /usr/lib/x86_64-linux-gnu/libtiff.so
+../Examples/RGB-D/rgbd_tum: /usr/lib/x86_64-linux-gnu/libIlmImf.so
 ../Examples/RGB-D/rgbd_tum: ../Thirdparty/DBoW2/lib/libDBoW2.so
 ../Examples/RGB-D/rgbd_tum: ../Thirdparty/g2o/lib/libg2o.so
 ../Examples/RGB-D/rgbd_tum: CMakeFiles/rgbd_tum.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/yueshen/mobile-robotics/SemanticORB-SLAM/ORB_SLAM2/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Linking CXX executable ../Examples/RGB-D/rgbd_tum"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/huisun/git-repos/SemanticORB-SLAM/ORB_SLAM2/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Linking CXX executable ../Examples/RGB-D/rgbd_tum"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/rgbd_tum.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.
@@ -120,6 +132,6 @@ CMakeFiles/rgbd_tum.dir/clean:
 .PHONY : CMakeFiles/rgbd_tum.dir/clean
 
 CMakeFiles/rgbd_tum.dir/depend:
-	cd /home/yueshen/mobile-robotics/SemanticORB-SLAM/ORB_SLAM2/cmake-build-debug && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/yueshen/mobile-robotics/SemanticORB-SLAM/ORB_SLAM2 /home/yueshen/mobile-robotics/SemanticORB-SLAM/ORB_SLAM2 /home/yueshen/mobile-robotics/SemanticORB-SLAM/ORB_SLAM2/cmake-build-debug /home/yueshen/mobile-robotics/SemanticORB-SLAM/ORB_SLAM2/cmake-build-debug /home/yueshen/mobile-robotics/SemanticORB-SLAM/ORB_SLAM2/cmake-build-debug/CMakeFiles/rgbd_tum.dir/DependInfo.cmake --color=$(COLOR)
+	cd /home/huisun/git-repos/SemanticORB-SLAM/ORB_SLAM2/cmake-build-debug && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/huisun/git-repos/SemanticORB-SLAM/ORB_SLAM2 /home/huisun/git-repos/SemanticORB-SLAM/ORB_SLAM2 /home/huisun/git-repos/SemanticORB-SLAM/ORB_SLAM2/cmake-build-debug /home/huisun/git-repos/SemanticORB-SLAM/ORB_SLAM2/cmake-build-debug /home/huisun/git-repos/SemanticORB-SLAM/ORB_SLAM2/cmake-build-debug/CMakeFiles/rgbd_tum.dir/DependInfo.cmake --color=$(COLOR)
 .PHONY : CMakeFiles/rgbd_tum.dir/depend
 

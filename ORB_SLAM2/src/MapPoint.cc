@@ -210,7 +210,6 @@ void MapPoint::Replace(MapPoint* pMP)
     pMP->IncreaseFound(nfound);
     pMP->IncreaseVisible(nvisible);
     pMP->ComputeDistinctiveDescriptors();
-    pMP->ComputeDistinctiveSemantic();
 
     mpMap->EraseMapPoint(this);
 }
@@ -307,68 +306,11 @@ void MapPoint::ComputeDistinctiveDescriptors()
     }
 }
 
-
-void MapPoint::ComputeDistinctiveSemantic()
-{
-    // initialize msemantic
-    
-    map<KeyFrame*,size_t> observations;
-
-    {
-        unique_lock<mutex> lock1(mMutexFeatures);
-        if(mbBad)
-            return;
-        observations=mObservations;
-    }
-
-    if(observations.empty())
-        return;
-
-
-    cv::Mat vSemantic;
-//    cv::Mat test = cv::Mat(2,4, CV_32F);
-
-    
-
-    for(map<KeyFrame*,size_t>::iterator mit=observations.begin(), mend=observations.end(); mit!=mend; mit++)
-    {
-        KeyFrame* pKF = mit->first;
-        if(!pKF->isBad()) {
-//            std::cout << "visualizing ";
-//            std::cout << "test = " << pKF->mSemantic << endl;
-//            std::cout << pKF->mSemantic.row(mit->second) << std::endl;
-            vSemantic.push_back(pKF->mSemantic.row(mit->second));
-        }
-    }
-
-    if (vSemantic.empty())
-        return;
-
-    // find the median of each column
-    const size_t N = vSemantic.rows;
-    cv::Mat vSemantic_sorted;
-
-    cv::sort(vSemantic, vSemantic_sorted, CV_SORT_EVERY_COLUMN);
-
-    msemantic = vSemantic_sorted.row(size_t(0.5*N));
-
-}
-
-
-
 cv::Mat MapPoint::GetDescriptor()
 {
     unique_lock<mutex> lock(mMutexFeatures);
     return mDescriptor.clone();
 }
-
-
-cv::Mat MapPoint::GetProb()
-{
-    unique_lock<mutex> lock(mMutexFeatures);
-    return msemantic.clone();
-}
-
 
 int MapPoint::GetIndexInKeyFrame(KeyFrame *pKF)
 {

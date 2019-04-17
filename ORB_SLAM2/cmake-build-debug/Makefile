@@ -48,10 +48,10 @@ RM = /snap/clion/67/bin/cmake/linux/bin/cmake -E remove -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/yueshen/mobile-robotics/SemanticORB-SLAM/ORB_SLAM2
+CMAKE_SOURCE_DIR = /home/huisun/git-repos/SemanticORB-SLAM/ORB_SLAM2
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/yueshen/mobile-robotics/SemanticORB-SLAM/ORB_SLAM2/cmake-build-debug
+CMAKE_BINARY_DIR = /home/huisun/git-repos/SemanticORB-SLAM/ORB_SLAM2/cmake-build-debug
 
 #=============================================================================
 # Targets provided globally by CMake.
@@ -80,9 +80,9 @@ edit_cache/fast: edit_cache
 
 # The main all target
 all: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/yueshen/mobile-robotics/SemanticORB-SLAM/ORB_SLAM2/cmake-build-debug/CMakeFiles /home/yueshen/mobile-robotics/SemanticORB-SLAM/ORB_SLAM2/cmake-build-debug/CMakeFiles/progress.marks
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/huisun/git-repos/SemanticORB-SLAM/ORB_SLAM2/cmake-build-debug/CMakeFiles /home/huisun/git-repos/SemanticORB-SLAM/ORB_SLAM2/cmake-build-debug/CMakeFiles/progress.marks
 	$(MAKE) -f CMakeFiles/Makefile2 all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/yueshen/mobile-robotics/SemanticORB-SLAM/ORB_SLAM2/cmake-build-debug/CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/huisun/git-repos/SemanticORB-SLAM/ORB_SLAM2/cmake-build-debug/CMakeFiles 0
 .PHONY : all
 
 # The main clean target
@@ -876,114 +876,6 @@ src/Viewer.cc.s:
 	$(MAKE) -f CMakeFiles/ORB_SLAM2.dir/build.make CMakeFiles/ORB_SLAM2.dir/src/Viewer.cc.s
 .PHONY : src/Viewer.cc.s
 
-src/classprob.o: src/classprob.cpp.o
-
-.PHONY : src/classprob.o
-
-# target to build an object file
-src/classprob.cpp.o:
-	$(MAKE) -f CMakeFiles/ORB_SLAM2.dir/build.make CMakeFiles/ORB_SLAM2.dir/src/classprob.cpp.o
-.PHONY : src/classprob.cpp.o
-
-src/classprob.i: src/classprob.cpp.i
-
-.PHONY : src/classprob.i
-
-# target to preprocess a source file
-src/classprob.cpp.i:
-	$(MAKE) -f CMakeFiles/ORB_SLAM2.dir/build.make CMakeFiles/ORB_SLAM2.dir/src/classprob.cpp.i
-.PHONY : src/classprob.cpp.i
-
-src/classprob.s: src/classprob.cpp.s
-
-.PHONY : src/classprob.s
-
-# target to generate assembly for a file
-src/classprob.cpp.s:
-	$(MAKE) -f CMakeFiles/ORB_SLAM2.dir/build.make CMakeFiles/ORB_SLAM2.dir/src/classprob.cpp.s
-.PHONY : src/classprob.cpp.s
-
-src/detection.o: src/detection.cpp.o
-
-.PHONY : src/detection.o
-
-# target to build an object file
-src/detection.cpp.o:
-	$(MAKE) -f CMakeFiles/ORB_SLAM2.dir/build.make CMakeFiles/ORB_SLAM2.dir/src/detection.cpp.o
-.PHONY : src/detection.cpp.o
-
-src/detection.i: src/detection.cpp.i
-
-.PHONY : src/detection.i
-
-# target to preprocess a source file
-src/detection.cpp.i:
-	$(MAKE) -f CMakeFiles/ORB_SLAM2.dir/build.make CMakeFiles/ORB_SLAM2.dir/src/detection.cpp.i
-.PHONY : src/detection.cpp.i
-
-src/detection.s: src/detection.cpp.s
-
-.PHONY : src/detection.s
-
-# target to generate assembly for a file
-src/detection.cpp.s:
-	$(MAKE) -f CMakeFiles/ORB_SLAM2.dir/build.make CMakeFiles/ORB_SLAM2.dir/src/detection.cpp.s
-.PHONY : src/detection.cpp.s
-
-src/parser.o: src/parser.cpp.o
-
-.PHONY : src/parser.o
-
-# target to build an object file
-src/parser.cpp.o:
-	$(MAKE) -f CMakeFiles/ORB_SLAM2.dir/build.make CMakeFiles/ORB_SLAM2.dir/src/parser.cpp.o
-.PHONY : src/parser.cpp.o
-
-src/parser.i: src/parser.cpp.i
-
-.PHONY : src/parser.i
-
-# target to preprocess a source file
-src/parser.cpp.i:
-	$(MAKE) -f CMakeFiles/ORB_SLAM2.dir/build.make CMakeFiles/ORB_SLAM2.dir/src/parser.cpp.i
-.PHONY : src/parser.cpp.i
-
-src/parser.s: src/parser.cpp.s
-
-.PHONY : src/parser.s
-
-# target to generate assembly for a file
-src/parser.cpp.s:
-	$(MAKE) -f CMakeFiles/ORB_SLAM2.dir/build.make CMakeFiles/ORB_SLAM2.dir/src/parser.cpp.s
-.PHONY : src/parser.cpp.s
-
-src/semantic.o: src/semantic.cpp.o
-
-.PHONY : src/semantic.o
-
-# target to build an object file
-src/semantic.cpp.o:
-	$(MAKE) -f CMakeFiles/ORB_SLAM2.dir/build.make CMakeFiles/ORB_SLAM2.dir/src/semantic.cpp.o
-.PHONY : src/semantic.cpp.o
-
-src/semantic.i: src/semantic.cpp.i
-
-.PHONY : src/semantic.i
-
-# target to preprocess a source file
-src/semantic.cpp.i:
-	$(MAKE) -f CMakeFiles/ORB_SLAM2.dir/build.make CMakeFiles/ORB_SLAM2.dir/src/semantic.cpp.i
-.PHONY : src/semantic.cpp.i
-
-src/semantic.s: src/semantic.cpp.s
-
-.PHONY : src/semantic.s
-
-# target to generate assembly for a file
-src/semantic.cpp.s:
-	$(MAKE) -f CMakeFiles/ORB_SLAM2.dir/build.make CMakeFiles/ORB_SLAM2.dir/src/semantic.cpp.s
-.PHONY : src/semantic.cpp.s
-
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -1074,18 +966,6 @@ help:
 	@echo "... src/Viewer.o"
 	@echo "... src/Viewer.i"
 	@echo "... src/Viewer.s"
-	@echo "... src/classprob.o"
-	@echo "... src/classprob.i"
-	@echo "... src/classprob.s"
-	@echo "... src/detection.o"
-	@echo "... src/detection.i"
-	@echo "... src/detection.s"
-	@echo "... src/parser.o"
-	@echo "... src/parser.i"
-	@echo "... src/parser.s"
-	@echo "... src/semantic.o"
-	@echo "... src/semantic.i"
-	@echo "... src/semantic.s"
 .PHONY : help
 
 

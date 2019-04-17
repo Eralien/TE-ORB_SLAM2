@@ -43,10 +43,10 @@ RM = /snap/clion/67/bin/cmake/linux/bin/cmake -E remove -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/yueshen/mobile-robotics/SemanticORB-SLAM/ORB_SLAM2
+CMAKE_SOURCE_DIR = /home/huisun/git-repos/SemanticORB-SLAM/ORB_SLAM2
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/yueshen/mobile-robotics/SemanticORB-SLAM/ORB_SLAM2/cmake-build-debug
+CMAKE_BINARY_DIR = /home/huisun/git-repos/SemanticORB-SLAM/ORB_SLAM2/cmake-build-debug
 
 # Include any dependencies generated for this target.
 include CMakeFiles/mono_euroc.dir/depend.make
@@ -59,16 +59,16 @@ include CMakeFiles/mono_euroc.dir/flags.make
 
 CMakeFiles/mono_euroc.dir/Examples/Monocular/mono_euroc.cc.o: CMakeFiles/mono_euroc.dir/flags.make
 CMakeFiles/mono_euroc.dir/Examples/Monocular/mono_euroc.cc.o: ../Examples/Monocular/mono_euroc.cc
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/yueshen/mobile-robotics/SemanticORB-SLAM/ORB_SLAM2/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/mono_euroc.dir/Examples/Monocular/mono_euroc.cc.o"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/mono_euroc.dir/Examples/Monocular/mono_euroc.cc.o -c /home/yueshen/mobile-robotics/SemanticORB-SLAM/ORB_SLAM2/Examples/Monocular/mono_euroc.cc
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/huisun/git-repos/SemanticORB-SLAM/ORB_SLAM2/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/mono_euroc.dir/Examples/Monocular/mono_euroc.cc.o"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/mono_euroc.dir/Examples/Monocular/mono_euroc.cc.o -c /home/huisun/git-repos/SemanticORB-SLAM/ORB_SLAM2/Examples/Monocular/mono_euroc.cc
 
 CMakeFiles/mono_euroc.dir/Examples/Monocular/mono_euroc.cc.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/mono_euroc.dir/Examples/Monocular/mono_euroc.cc.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/yueshen/mobile-robotics/SemanticORB-SLAM/ORB_SLAM2/Examples/Monocular/mono_euroc.cc > CMakeFiles/mono_euroc.dir/Examples/Monocular/mono_euroc.cc.i
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/huisun/git-repos/SemanticORB-SLAM/ORB_SLAM2/Examples/Monocular/mono_euroc.cc > CMakeFiles/mono_euroc.dir/Examples/Monocular/mono_euroc.cc.i
 
 CMakeFiles/mono_euroc.dir/Examples/Monocular/mono_euroc.cc.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/mono_euroc.dir/Examples/Monocular/mono_euroc.cc.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/yueshen/mobile-robotics/SemanticORB-SLAM/ORB_SLAM2/Examples/Monocular/mono_euroc.cc -o CMakeFiles/mono_euroc.dir/Examples/Monocular/mono_euroc.cc.s
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/huisun/git-repos/SemanticORB-SLAM/ORB_SLAM2/Examples/Monocular/mono_euroc.cc -o CMakeFiles/mono_euroc.dir/Examples/Monocular/mono_euroc.cc.s
 
 # Object files for target mono_euroc
 mono_euroc_OBJECTS = \
@@ -96,7 +96,7 @@ mono_euroc_EXTERNAL_OBJECTS =
 ../Examples/Monocular/mono_euroc: /usr/local/lib/libopencv_imgcodecs.so.3.2.0
 ../Examples/Monocular/mono_euroc: /usr/local/lib/libopencv_imgproc.so.3.2.0
 ../Examples/Monocular/mono_euroc: /usr/local/lib/libopencv_core.so.3.2.0
-../Examples/Monocular/mono_euroc: /home/yueshen/mobile-robotics/Pangolin/build/src/libpangolin.so
+../Examples/Monocular/mono_euroc: /home/huisun/Pangolin/build/src/libpangolin.so
 ../Examples/Monocular/mono_euroc: /usr/lib/x86_64-linux-gnu/libGLU.so
 ../Examples/Monocular/mono_euroc: /usr/lib/x86_64-linux-gnu/libGL.so
 ../Examples/Monocular/mono_euroc: /usr/lib/x86_64-linux-gnu/libGLEW.so
@@ -104,10 +104,22 @@ mono_euroc_EXTERNAL_OBJECTS =
 ../Examples/Monocular/mono_euroc: /usr/lib/x86_64-linux-gnu/libICE.so
 ../Examples/Monocular/mono_euroc: /usr/lib/x86_64-linux-gnu/libX11.so
 ../Examples/Monocular/mono_euroc: /usr/lib/x86_64-linux-gnu/libXext.so
+../Examples/Monocular/mono_euroc: /usr/lib/x86_64-linux-gnu/libdc1394.so
+../Examples/Monocular/mono_euroc: /usr/lib/x86_64-linux-gnu/libavcodec.so
+../Examples/Monocular/mono_euroc: /usr/lib/x86_64-linux-gnu/libavformat.so
+../Examples/Monocular/mono_euroc: /usr/lib/x86_64-linux-gnu/libavutil.so
+../Examples/Monocular/mono_euroc: /usr/lib/x86_64-linux-gnu/libswscale.so
+../Examples/Monocular/mono_euroc: /usr/lib/x86_64-linux-gnu/libavdevice.so
+../Examples/Monocular/mono_euroc: /usr/local/lib/x86_64-linux-gnu/libuvc.so
+../Examples/Monocular/mono_euroc: /usr/lib/x86_64-linux-gnu/libpng.so
+../Examples/Monocular/mono_euroc: /usr/lib/x86_64-linux-gnu/libz.so
+../Examples/Monocular/mono_euroc: /usr/lib/x86_64-linux-gnu/libjpeg.so
+../Examples/Monocular/mono_euroc: /usr/lib/x86_64-linux-gnu/libtiff.so
+../Examples/Monocular/mono_euroc: /usr/lib/x86_64-linux-gnu/libIlmImf.so
 ../Examples/Monocular/mono_euroc: ../Thirdparty/DBoW2/lib/libDBoW2.so
 ../Examples/Monocular/mono_euroc: ../Thirdparty/g2o/lib/libg2o.so
 ../Examples/Monocular/mono_euroc: CMakeFiles/mono_euroc.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/yueshen/mobile-robotics/SemanticORB-SLAM/ORB_SLAM2/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Linking CXX executable ../Examples/Monocular/mono_euroc"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/huisun/git-repos/SemanticORB-SLAM/ORB_SLAM2/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Linking CXX executable ../Examples/Monocular/mono_euroc"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/mono_euroc.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.
@@ -120,6 +132,6 @@ CMakeFiles/mono_euroc.dir/clean:
 .PHONY : CMakeFiles/mono_euroc.dir/clean
 
 CMakeFiles/mono_euroc.dir/depend:
-	cd /home/yueshen/mobile-robotics/SemanticORB-SLAM/ORB_SLAM2/cmake-build-debug && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/yueshen/mobile-robotics/SemanticORB-SLAM/ORB_SLAM2 /home/yueshen/mobile-robotics/SemanticORB-SLAM/ORB_SLAM2 /home/yueshen/mobile-robotics/SemanticORB-SLAM/ORB_SLAM2/cmake-build-debug /home/yueshen/mobile-robotics/SemanticORB-SLAM/ORB_SLAM2/cmake-build-debug /home/yueshen/mobile-robotics/SemanticORB-SLAM/ORB_SLAM2/cmake-build-debug/CMakeFiles/mono_euroc.dir/DependInfo.cmake --color=$(COLOR)
+	cd /home/huisun/git-repos/SemanticORB-SLAM/ORB_SLAM2/cmake-build-debug && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/huisun/git-repos/SemanticORB-SLAM/ORB_SLAM2 /home/huisun/git-repos/SemanticORB-SLAM/ORB_SLAM2 /home/huisun/git-repos/SemanticORB-SLAM/ORB_SLAM2/cmake-build-debug /home/huisun/git-repos/SemanticORB-SLAM/ORB_SLAM2/cmake-build-debug /home/huisun/git-repos/SemanticORB-SLAM/ORB_SLAM2/cmake-build-debug/CMakeFiles/mono_euroc.dir/DependInfo.cmake --color=$(COLOR)
 .PHONY : CMakeFiles/mono_euroc.dir/depend
 

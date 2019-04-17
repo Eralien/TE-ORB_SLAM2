@@ -6,5 +6,5 @@ CXX_FLAGS =  -Wall   -O3 -march=native -std=c++11 -g
 
 CXX_DEFINES = -DCOMPILEDWITHC11
 
-CXX_INCLUDES = -I/home/yueshen/mobile-robotics/SemanticORB-SLAM/ORB_SLAM2 -I/home/yueshen/mobile-robotics/SemanticORB-SLAM/ORB_SLAM2/include -isystem /usr/include/eigen3 -isystem /home/yueshen/mobile-robotics/Pangolin/include -isystem /home/yueshen/mobile-robotics/Pangolin/build/src/include -isystem /usr/local/include -isystem /usr/local/include/opencv 
+CXX_INCLUDES = -I/home/huisun/git-repos/SemanticORB-SLAM/ORB_SLAM2 -I/home/huisun/git-repos/SemanticORB-SLAM/ORB_SLAM2/include -isystem /usr/include/eigen3 -isystem /home/huisun/Pangolin/include -isystem /home/huisun/Pangolin/build/src/include -isystem /usr/local/include -isystem /usr/local/include/opencv 
 
