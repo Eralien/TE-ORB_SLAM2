@@ -2,7 +2,7 @@
 # get all filename in specified path
 
 image_path=../Sample/rgbd_dataset_freiburg1_xyz/rgb/
-log_path=./prediction_info.txt
+log_path=./prediction_info_full.txt
 list_file=./TUM_list.txt
 
 rm -f $log_path

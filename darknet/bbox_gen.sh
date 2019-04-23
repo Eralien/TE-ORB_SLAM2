@@ -1,9 +1,7 @@
 #!/usr/bin/expect -f
 
 set timeout 100
-# set KITTI_DIR ./kitti_test/
 set TUM_DIR /media/eralien/ReservoirLakeBed1/Data/TUM/rgbd_dataset_freiburg1_room/rgb/
-# set KITTI_LIST ./kitti_list.txt
 set TUM_LIST ./TUM_list.txt
 set FID [open ${TUM_LIST} r]
 

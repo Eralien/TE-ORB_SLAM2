@@ -285,7 +285,7 @@ void draw_detections(image im, detection *dets, int num,
     int i, j;
 
     //output to a file
-    FILE *out_fd = fopen("./prediction_info.txt", "a");
+    FILE *out_fd = fopen("./prediction_info_full.txt", "a");
     // File established
     give_timestamp(out_fd);
     printf("num = %d, classes = %d \n", num, classes);

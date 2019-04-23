@@ -59,11 +59,21 @@ Once you get a successfully printed out predict image, execute:
 ```
 ./dataset_dir_gen.sh
 ```
-which will generate a TUM_list.txt and an empty prediction_info.txt. TUM_list.txt stores the TUM dataset fr1_xyz sequence filename we provided in [Sample directory](./Sample/). The prediction_info.txt will store the YOLO prediction information in the next few step. Then execute:
+which will generate a TUM_list.txt and an empty prediction_info_full.txt. TUM_list.txt stores the TUM dataset fr1_xyz sequence filename we provided in [Sample directory](./Sample/). The prediction_info_full.txt will store the YOLO prediction information in the next few step. Then execute:
 ```
 ./bbox_gen.sh
 ```
-Running this bash script requires expect. If you don't have expect, it can be installed by yum, apt-get, or from source. You should notice prediction information printed on terminal and in prediction_info.txt.
+Running this bash script requires expect. If you don't have expect, it can be installed by yum, apt-get, or from source. You should notice prediction information printed on terminal and in prediction_info.txt. Then execaute:
+```
+cp ./prediction_info_full.txt ../ORB_SLAM2/data
+cp ./TUM_list.txt ../ORB_SLAM2/data
+cd ../ORB_SLAM2
+./Examples/Monocular/mono_tum Vocabulary/ORBvoc.txt Examples/Monocular/TUM1.yaml ../Sample/rgbd_dataset_freiburg1_xyz/rgb/
+```
+
+If you would like to use your own dataset with TUM, please edit [dataset_dir_gen.sh](./darknet/dataset_dir_gen.sh) and [bbox_gen.sh](./darknet/bbox_gen.sh) with your local dataset path, as well as adapt the last command above to your local path.
+
+### ORB-SLAM2 with RGBD
 
 
 
