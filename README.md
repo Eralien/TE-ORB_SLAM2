@@ -20,12 +20,51 @@ If you use SemanticORB-SLAM, please cite the works in [Related Publications](#re
 ## Installation
 For darknet and ORB-SLAM2, please install them separately. Our work has been tested on __Ubuntu 16.04__.
 
-### ORB-SLAM2
-We encourage you to read its [README](./ORB_SLAM2/README.md) for installation details first. Make sure you have installed these prerequisites:
+### ORB-SLAM2 with Semantics
+We encourage you to read ORB_SLAM2 [README](./ORB_SLAM2/README.md) for installation details first. Make sure you have installed these prerequisites:
 * C++11 or C++0x Compiler
 * Pangolin
 * OpenCV, version higher than 2.4.3
 * Eigen3
+
+Once you finished building prerequisites, enter the SemanticORB-SLAM2 root directory and execute:
+```
+cd ORB_SLAM2
+chmod +x build.sh
+./build.sh
+```
+
+Once terminal returns 100% compile completion, please continue with the YOLOv3 installation part. Execute:
+```
+cd ../darknet
+```
+
+Installation of darknet is very easy. Modify the first five lines of [Makefile](./darknet/Makefile) according to your computer configuration. If you have installed CUDA, please edit the file:
+```
+GPU = 1
+```
+which will greatly accelerate the speed for image processing. Then execute:
+```
+make
+```
+You will have to download the pre-trained weight file [here (237 MB)](https://pjreddie.com/media/files/yolov3.weights). Or just run this:
+```
+wget https://pjreddie.com/media/files/yolov3.weights
+```
+Then run the detector to verify installation success:
+```
+./darknet detect cfg/yolov3.cfg yolov3.weights data/dog.jpg
+```
+Once you get a successfully printed out predict image, execute:
+```
+./dataset_dir_gen.sh
+```
+which will generate a TUM_list.txt and an empty prediction_info.txt. TUM_list.txt stores the TUM dataset fr1_xyz sequence filename we provided in [Sample directory](./Sample/). The prediction_info.txt will store the YOLO prediction information in the next few step. Then execute:
+```
+./bbox_gen.sh
+```
+Running this bash script requires expect. If you don't have expect, it can be installed by yum, apt-get, or from source. You should notice prediction information printed on terminal and in prediction_info.txt.
+
 
 
  ### Related Publications
