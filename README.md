@@ -77,11 +77,11 @@ Once you get a successfully printed out predict image, execute:
 ```
 ./dataset_dir_gen.sh
 ```
-which will generate a `TUM_list.txt` and an empty `prediction_info_full.txt`. TUM_list.txt stores the TUM dataset `fr1_xyz` sequence filename we provided in [Sample directory](./Sample/). The `prediction_info_full.txt` will store the YOLO prediction information in the next few step. Then execute:
+which will generate a `TUM_list.txt` and an empty `prediction_info_full.txt`. TUM_list.txt stores the TUM dataset `fr1_xyz` sequence filename we provided in [Sample directory](./Sample/). The `prediction_info_full.txt` will store the YOLO prediction information in the next few step. In `./bbox_gen.sh`, edit the TUM_DIR environment variable appropriately. Then execute:
 ```
 ./bbox_gen.sh
 ```
-Running this bash script requires `expect`. If you don't have expect, it can be installed by yum, apt-get, or from source. You should notice prediction information printed on terminal and in `prediction_info.txt`. Then execaute:
+Running this bash script requires `expect`. If you don't have expect, it can be installed by yum, apt-get, or from source. You should notice prediction information printed on terminal and in `prediction_info.txt`. Then execute:
 ```
 cp ./prediction_info_full.txt ../ORB_SLAM2/data
 cp ./TUM_list.txt ../ORB_SLAM2/data
