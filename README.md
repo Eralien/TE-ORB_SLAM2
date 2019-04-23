@@ -20,6 +20,23 @@ If you use SemanticORB-SLAM, please cite the works in [Related Publications](#re
 ## Installation
 For darknet and ORB-SLAM2, please install them separately. Our work has been tested on __Ubuntu 16.04__.
 
+To download the entire repository, first to execute:
+```
+git clone https://github.com/Eralien/SemanticORB-SLAM.git
+cd SemanticORB-SLAM
+```
+in your local directory.
+
+We have different tags for different tasks. 
+* To work on [ORB-SLAM2 with Semantics](#ORB-SLAM2-with-Semantics), execute:
+```
+git checkout tags/ORB-SLAM2_with_Semantics
+```
+* To work on  [ORB-SLAM2 with RGBD](#ORB-SLAM2-with-RGBD), execute:
+```
+git checkout tags/ORB-SLAM2_with_RGBD
+```
+
 ### ORB-SLAM2 with Semantics
 We encourage you to read ORB_SLAM2 [README](./ORB_SLAM2/README.md) for installation details first. Make sure you have installed these prerequisites:
 * C++11 or C++0x Compiler
@@ -59,11 +76,11 @@ Once you get a successfully printed out predict image, execute:
 ```
 ./dataset_dir_gen.sh
 ```
-which will generate a TUM_list.txt and an empty prediction_info_full.txt. TUM_list.txt stores the TUM dataset fr1_xyz sequence filename we provided in [Sample directory](./Sample/). The prediction_info_full.txt will store the YOLO prediction information in the next few step. Then execute:
+which will generate a `TUM_list.txt` and an empty `prediction_info_full.txt`. TUM_list.txt stores the TUM dataset `fr1_xyz` sequence filename we provided in [Sample directory](./Sample/). The `prediction_info_full.txt` will store the YOLO prediction information in the next few step. Then execute:
 ```
 ./bbox_gen.sh
 ```
-Running this bash script requires expect. If you don't have expect, it can be installed by yum, apt-get, or from source. You should notice prediction information printed on terminal and in prediction_info.txt. Then execaute:
+Running this bash script requires `expect`. If you don't have expect, it can be installed by yum, apt-get, or from source. You should notice prediction information printed on terminal and in `prediction_info.txt`. Then execaute:
 ```
 cp ./prediction_info_full.txt ../ORB_SLAM2/data
 cp ./TUM_list.txt ../ORB_SLAM2/data
@@ -74,8 +91,19 @@ cd ../ORB_SLAM2
 If you would like to use your own dataset with TUM, please edit [dataset_dir_gen.sh](./darknet/dataset_dir_gen.sh) and [bbox_gen.sh](./darknet/bbox_gen.sh) with your local dataset path, as well as adapt the last command above to your local path.
 
 ### ORB-SLAM2 with RGBD
+Go to ORB-SLAM2 sub-directory first:
+```
+cd ORB_SLAM2
+```
+Generate the RGBD association file by downloading [associate.py](http://vision.in.tum.de/data/datasets/rgbd-dataset/tools). Follow the instructions to generate an `associations.txt` by 
+```
+python associate.py PATH_TO_SEQUENCE/rgb.txt PATH_TO_SEQUENCE/depth.txt > associations.txt
+```
 
-
+Execute the following command. Change `TUMX.yaml` to TUM1.yaml, TUM2.yaml or TUM3.yaml for freiburg1, freiburg2 and freiburg3 sequences respectively. Change `PATH_TO_SEQUENCE_FOLDER` to the uncompressed sequence folder. Change `ASSOCIATIONS_FILE` to the path to the corresponding associations file.
+```
+./Examples/RGB-D/rgbd_tum Vocabulary/ORBvoc.txt Examples/RGB-D/TUMX.yaml PATH_TO_SEQUENCE_FOLDER ASSOCIATIONS_FILE
+```
 
  ### Related Publications
  1. <cite>ORB-SLAM2: An Open-Source SLAM System for Monocular, Stereo, and RGB-D Cameras</cite>:
