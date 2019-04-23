@@ -7,6 +7,7 @@ __Team members__: Madhav Achar, Siyuan Feng, Yue Shen, Hui Sun, Xi Lin
 ## SemanticORB-SLAM
  SemanticORB-SLAM is a work that investigate two different methods to improve the tracking of [ORB-SLAM2](https://github.com/raulmur/ORB_SLAM2) in environments where it is difficult to extract ORB features. Methods are:
  * Incorporate high level semantic information from an object classification system such as [YOLOv3](https://pjreddie.com/darknet/yolo/) to improve ORB matching and association in frame by frame tracking. 
+ ![alt text](ORB-SLAM-semantic.png "Semantic Pipeline")
  * Utilize RGB-D odometry tracking based on the photo-consistency formulation of the frame-to-frame tracking problem performed in <cite>Real-time visual odometry from dense RGB-D images</cite> and implemented in OpenCV's RGB-D odometry class.
 
  ## License
@@ -104,6 +105,10 @@ Execute the following command. Change `TUMX.yaml` to TUM1.yaml, TUM2.yaml or TUM
 ```
 ./Examples/RGB-D/rgbd_tum Vocabulary/ORBvoc.txt Examples/RGB-D/TUMX.yaml PATH_TO_SEQUENCE_FOLDER ASSOCIATIONS_FILE
 ```
+
+## Results
+![alt text](RMSE_Traj_Error.png "Traj Error")
+![alt text](FrameFailed.png "Frame Failed")
 
  ### Related Publications
  1. <cite>ORB-SLAM2: An Open-Source SLAM System for Monocular, Stereo, and RGB-D Cameras</cite>:
