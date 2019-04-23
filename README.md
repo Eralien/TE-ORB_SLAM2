@@ -11,7 +11,7 @@ __Team members__: Madhav Achar, Siyuan Feng, Yue Shen, Hui Sun, Xi Lin
  * Utilize RGB-D odometry tracking based on the photo-consistency formulation of the frame-to-frame tracking problem performed in <cite>Real-time visual odometry from dense RGB-D images</cite> and implemented in OpenCV's RGB-D odometry class.
 
  ## License
- In our work we use the repo of [ORB-SLAM2](https://github.com/raulmur/ORB_SLAM2) and [darknet](https://github.com/pjreddie/darknet).
+ In our work we use the repos of [ORB-SLAM2](https://github.com/raulmur/ORB_SLAM2), [darknet](https://github.com/pjreddie/darknet), and [OpenCV-RgbdOdometry](https://github.com/tzutalin/OpenCV-RgbdOdometry)
 
 ORB-SLAM2 is released under a [GPLv3 license](https://github.com/raulmur/ORB_SLAM2/blob/master/License-gpl.txt). For any commercial or academic usage, please visit ORB-SLAM2 github repo to ensure feasibility.
 
