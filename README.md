@@ -95,7 +95,7 @@ Go to ORB-SLAM2 sub-directory first:
 ```
 cd ORB_SLAM2
 ```
-Generate the RGBD association file by downloading [associate.py](http://vision.in.tum.de/data/datasets/rgbd-dataset/tools). Follow the instructions to generate an `associations.txt` by 
+Generate the RGBD association file by downloading [associate.py](http://vision.in.tum.de/data/datasets/rgbd-dataset/tools). Follow the instructions to generate an `associations.txt`.
 ```
 python associate.py PATH_TO_SEQUENCE/rgb.txt PATH_TO_SEQUENCE/depth.txt > associations.txt
 ```
