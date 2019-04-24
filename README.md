@@ -1,11 +1,11 @@
-# SemanticORB-SLAM
+# Tracking Enhenced ORB-SLAM2
 
 This repository is for Team 7 project of NAME 568/EECS 568/ROB 530: [__Mobile Robotics__](http://robots.engin.umich.edu/mobilerobotics/) of University of Michigan.
 
 __Team members__: Madhav Achar, Siyuan Feng, Yue Shen, Hui Sun, Xi Lin
 
-## SemanticORB-SLAM
- SemanticORB-SLAM is a work that investigate two different methods to improve the tracking of [ORB-SLAM2](https://github.com/raulmur/ORB_SLAM2) in environments where it is difficult to extract ORB features. Methods are:
+## TE-ORB_SLAM2
+ TE-ORB_SLAM2 is a work that investigate two different methods to improve the tracking of [ORB-SLAM2](https://github.com/raulmur/ORB_SLAM2) in environments where it is difficult to extract ORB features. Methods are:
  * Incorporate high level semantic information from an object classification system such as [YOLOv3](https://pjreddie.com/darknet/yolo/) to improve ORB matching and association in frame by frame tracking. 
  ![alt text](ORB-SLAM-semantic.png "Semantic Pipeline")
  * Utilize RGB-D odometry tracking based on the photo-consistency formulation of the frame-to-frame tracking problem performed in <cite>Real-time visual odometry from dense RGB-D images</cite> and implemented in OpenCV's RGB-D odometry class.
@@ -15,7 +15,7 @@ __Team members__: Madhav Achar, Siyuan Feng, Yue Shen, Hui Sun, Xi Lin
 
 ORB-SLAM2 is released under a [GPLv3 license](https://github.com/raulmur/ORB_SLAM2/blob/master/License-gpl.txt). For any commercial or academic usage, please visit ORB-SLAM2 github repo to ensure feasibility.
 
-If you use SemanticORB-SLAM, please cite the works in [Related Publications](#related-publications).
+If you use TE-ORB_SLAM2, please cite the works in [Related Publications](#related-publications).
 
 
 ## Installation
@@ -23,8 +23,8 @@ For darknet and ORB-SLAM2, please install them separately. Our work has been tes
 
 To download the entire repository, first to execute:
 ```
-git clone https://github.com/Eralien/SemanticORB-SLAM.git
-cd SemanticORB-SLAM
+git clone https://github.com/Eralien/TE-ORB_SLAM2.git
+cd TE-ORB_SLAM2
 ```
 in your local directory.
 
@@ -45,7 +45,7 @@ We encourage you to read ORB_SLAM2 [README](./ORB_SLAM2/README.md) for installat
 * OpenCV, version higher than 2.4.3
 * Eigen3
 
-Once you finished building prerequisites, enter the SemanticORB-SLAM2 root directory and execute:
+Once you finished building prerequisites, enter the TE-ORB_SLAM22 root directory and execute:
 ```
 cd ORB_SLAM2
 chmod +x build.sh
