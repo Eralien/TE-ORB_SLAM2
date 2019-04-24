@@ -81,12 +81,15 @@ which will generate a `TUM_list.txt` and an empty `prediction_info_full.txt`. TU
 ```
 ./bbox_gen.sh
 ```
-Running this bash script requires `expect`. If you don't have expect, it can be installed by yum, apt-get, or from source. You should notice prediction information printed on terminal and in `prediction_info.txt`. After the prediction info is created run the following commands:
+Running this bash script requires `expect`. If you don't have expect, it can be installed by yum, apt-get, or from source. You should notice prediction information printed on terminal and in `prediction_info.txt`. After the prediction info is created run the following commands to count the occurances of each class in `prediction_info.txt`. This can be used to update the class enumeration in ORB-SLAM2/include/detection.hpp. This step is not necessary if running the system on a TUM video sequence.
 ```
 cd parser
 mkdir build && cd build && cmake ..
 make
+cd bin
+./analytics
 ```
+Note that this uses functionality found in OpenCV 4+.
 
 Then execute:
 ```
