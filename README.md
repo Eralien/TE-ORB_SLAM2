@@ -81,7 +81,14 @@ which will generate a `TUM_list.txt` and an empty `prediction_info_full.txt`. TU
 ```
 ./bbox_gen.sh
 ```
-Running this bash script requires `expect`. If you don't have expect, it can be installed by yum, apt-get, or from source. You should notice prediction information printed on terminal and in `prediction_info.txt`. Then execute:
+Running this bash script requires `expect`. If you don't have expect, it can be installed by yum, apt-get, or from source. You should notice prediction information printed on terminal and in `prediction_info.txt`. After the prediction info is created run the following commands:
+```
+cd parser
+mkdir build && cd build && cmake ..
+make
+```
+
+Then execute:
 ```
 cp ./prediction_info_full.txt ../ORB_SLAM2/data
 cp ./TUM_list.txt ../ORB_SLAM2/data
