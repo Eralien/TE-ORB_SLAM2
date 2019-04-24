@@ -11,7 +11,7 @@ __Team members__: Madhav Achar, Siyuan Feng, Yue Shen, Hui Sun, Xi Lin
  * Utilize RGB-D odometry tracking based on the photo-consistency formulation of the frame-to-frame tracking problem performed in <cite>Real-time visual odometry from dense RGB-D images</cite> and implemented in OpenCV's RGB-D odometry class.
 
  ## License
- In our work we use the repo of [ORB-SLAM2](https://github.com/raulmur/ORB_SLAM2) and [darknet](https://github.com/pjreddie/darknet).
+ In our work we use the repos of [ORB-SLAM2](https://github.com/raulmur/ORB_SLAM2), [darknet](https://github.com/pjreddie/darknet), and [OpenCV-RgbdOdometry](https://github.com/tzutalin/OpenCV-RgbdOdometry)
 
 ORB-SLAM2 is released under a [GPLv3 license](https://github.com/raulmur/ORB_SLAM2/blob/master/License-gpl.txt). For any commercial or academic usage, please visit ORB-SLAM2 github repo to ensure feasibility.
 
@@ -77,11 +77,18 @@ Once you get a successfully printed out predict image, execute:
 ```
 ./dataset_dir_gen.sh
 ```
-which will generate a `TUM_list.txt` and an empty `prediction_info_full.txt`. TUM_list.txt stores the TUM dataset `fr1_xyz` sequence filename we provided in [Sample directory](./Sample/). The `prediction_info_full.txt` will store the YOLO prediction information in the next few step. Then execute:
+which will generate a `TUM_list.txt` and an empty `prediction_info_full.txt`. TUM_list.txt stores the TUM dataset `fr1_xyz` sequence filename we provided in [Sample directory](./Sample/). The `prediction_info_full.txt` will store the YOLO prediction information in the next few step. In `./bbox_gen.sh`, edit the TUM_DIR environment variable appropriately. Then execute:
 ```
 ./bbox_gen.sh
 ```
-Running this bash script requires `expect`. If you don't have expect, it can be installed by yum, apt-get, or from source. You should notice prediction information printed on terminal and in `prediction_info.txt`. Then execaute:
+Running this bash script requires `expect`. If you don't have expect, it can be installed by yum, apt-get, or from source. You should notice prediction information printed on terminal and in `prediction_info.txt`. After the prediction info is created run the following commands:
+```
+cd parser
+mkdir build && cd build && cmake ..
+make
+```
+
+Then execute:
 ```
 cp ./prediction_info_full.txt ../ORB_SLAM2/data
 cp ./TUM_list.txt ../ORB_SLAM2/data
