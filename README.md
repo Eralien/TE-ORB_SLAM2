@@ -1,4 +1,4 @@
-# Tracking Enhenced ORB-SLAM2
+# Tracking Enhanced ORB-SLAM2
 
 This repository is for Team 7 project of NAME 568/EECS 568/ROB 530: [__Mobile Robotics__](http://robots.engin.umich.edu/mobilerobotics/) of University of Michigan.
 
